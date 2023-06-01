@@ -56,7 +56,7 @@ class CreateElderlyRecordsTable extends Migration
 
             $table->text("other_disease")->nullable();
 
-            $table->text("note")->default("-");
+            $table->text("note")->nullable();
 
             $table->timestamps();
 
