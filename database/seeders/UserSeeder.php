@@ -21,14 +21,14 @@ class UserSeeder extends Seeder
             [
                 'name' => 'Admin',
                 'username' => 'admin',
-                'email' => 'admin@anandita.id',
+                'email' => 'admin@apuskesmasloakulu.my.id',
                 'phone_number' => 'xxx',
                 'password' => Hash::make('123123'),
             ],
             [
                 'name' => 'User',
                 'username' => 'user',
-                'email' => 'user@anandita.id',
+                'email' => 'user@apuskesmasloakulu.my.id',
                 'phone_number' => 'xxx',
                 'password' => Hash::make('123123'),
             ],

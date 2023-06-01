@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'DV. Anandita'),
+    'name' => env('APP_NAME', 'Puskesmas Loa Kulu'),
 
 
     'public' => [

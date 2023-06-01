@@ -44,9 +44,6 @@ class WebController extends Controller
         SEOTools::jsonLd()->addImage(asset(setting('about_image')));
 
         $galleries = Gallery::active();
-        $catherings = Experience::catherings();
-        $rents = Experience::rents();
-        $missions = Mission::active();
 
         $agent = new Agent();
         $ip = request()->ip();
@@ -60,11 +57,6 @@ class WebController extends Controller
             ]);
         }
         
-        return view('web.index', compact('galleries', 'catherings', 'rents', 'missions'));
-    }
-
-    public function inbox(WebInboxRequest $request) {
-        $inbox = Inbox::create($request->all());
-        return redirect()->back()->with('status',"Terima kasih, pesan anda berhasil kami terima!");
+        return view('web.index', compact('galleries'));
     }
 }
