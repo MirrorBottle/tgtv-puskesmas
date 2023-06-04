@@ -24,7 +24,6 @@ class CreateElderlyRecordsTable extends Migration
             $table->boolean("is_anemia")->default(0);
             $table->boolean("has_diabetes")->default(0);
             $table->boolean("has_kidney_disorder")->default(0);
-            $table->boolean("has_kidney")->default(0);
             $table->tinyInteger("screening")->comment("1 = Obati, 2 = Rujuk");
 
             $table->integer("blood_pressure_res");
@@ -47,7 +46,7 @@ class CreateElderlyRecordsTable extends Migration
             $table->integer("mmse_res")->default(0);
             $table->tinyInteger("mmse_group")->default(1)->comment("1 = Tidak ada, 2 = Ringan, 3 = Berat");
             
-            $table->integer("risk_factor_res")->default(0);
+            $table->string("risk_factor_res");
             $table->tinyInteger("risk_factor_group")->default(1)->comment("1 = Ada, 2 = Tidak ada");
 
             $table->integer("depression_res")->default(0);
@@ -57,6 +56,8 @@ class CreateElderlyRecordsTable extends Migration
             $table->text("other_disease")->nullable();
 
             $table->text("note")->nullable();
+            $table->text("treatment")->nullable();
+            $table->text("follow_up")->nullable();
 
             $table->timestamps();
 

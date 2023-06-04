@@ -67,7 +67,7 @@ return [
                 'label' => 'Logo', // you know what label it is
                 'rules' => 'required', // validation rule of laravel
                 'class' => '', // any class for input
-                'value' => 'storage/files/logo/logo-horizontal.png', // default value if you want
+                'value' => 'storage/files/logo.png', // default value if you want
             ],
             [
                 'type'  => 'file', // input fields type
@@ -95,15 +95,6 @@ return [
                 'rules' => 'required|nullable|max:191', // validation rule of laravel
                 'class' => '', // any class for input
                 'value' => 'Kami menyediakan Catering dan Rental.', // default value if you want
-            ],
-            [
-                'type'  => 'editor', // input fields type
-                'data'  => 'string', // data type, string, int, boolean
-                'name'  => 'about_description', // unique name for field
-                'label' => 'Deskripsi Tentang', // you know what label it is
-                'rules' => 'required|nullable|max:191', // validation rule of laravel
-                'class' => '', // any class for input
-                'value' => 'Puskesmas Loa Kulu', // default value if you want
             ],
             [
                 'type'  => 'file', // input fields type

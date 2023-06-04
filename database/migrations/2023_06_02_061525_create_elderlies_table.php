@@ -21,6 +21,7 @@ class CreateElderliesTable extends Migration
             $table->enum("gender", ["L", "P"]);
             $table->text("address")->nullable();
             $table->string("phone_number")->nullable();
+            $table->string("last_education")->nullable();
 
             $table->boolean("is_deceased")->default(0);
             $table->text("cause_of_death")->nullable();
