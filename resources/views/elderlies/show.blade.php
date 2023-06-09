@@ -19,22 +19,34 @@
             <table class="table table-bordered table-striped verticle-middle table-responsive-sm">
               <tbody>
                 <tr>
-                  <th scope="row" st>Nama</th>
+                  <th scope="row" st>Judul</th>
                 </tr>
                 <tr>
-                  <td>{{$module_data->name}}</td>
+                  <td>
+                    {{$module_data->title}}
+                  </td>
                 </tr>
                 <tr>
-                  <th scope="row" st>Email</th>
+                  <th scope="row">Status</th>
                 </tr>
                 <tr>
-                  <td>{{$module_data->email}}</td>
+                  <td><span class="badge text-white bg-{{$module_data->is_active == 1 ? 'success' : 'danger'}}">
+                    {{$module_data->is_active == 1 ? 'Aktif' : 'Nonaktif'}}
+                   </span></td>
                 </tr>
                 <tr>
-                  <th scope="row" st>Pesan</th>
+                  <th scope="row" st>Deskripsi</th>
                 </tr>
                 <tr>
-                  <td>{{$module_data->message}}</td>
+                  <td>{{$module_data->description}}</td>
+                </tr>
+                <tr>
+                  <th scope="row" st>Gambar</th>
+                </tr>
+                <tr>
+                  <td>
+                    <img src="{{asset($module_data->image)}}" alt="{{$module_data->title}}" class="img-fluid img-thumbnail">
+                  </td>
                 </tr>
               </tbody>
             </table>

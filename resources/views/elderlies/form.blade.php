@@ -11,8 +11,8 @@
     <div class="col-12">
       <div class="form-group">
         <?php
-        $field_name = 'name';
-        $field_label = 'Judul';
+        $field_name = 'title';
+        $field_label = 'Nama';
         $field_placeholder = $field_label;
         $required = "required";
         ?>
@@ -43,7 +43,7 @@
         $field_name = 'description';
         $field_label = 'Deskripsi';
         $field_placeholder = $field_label;
-        $required = "required";
+        $required = "";
         ?>
         {{ html()->label($field_label, $field_name) }} {!! fielf_required($required) !!}
         {{ html()->textarea($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"])->addClass($errors->has($field_name) ? 'is-invalid' : '') }}

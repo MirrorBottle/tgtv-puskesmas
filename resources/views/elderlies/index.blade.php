@@ -20,9 +20,8 @@
                 <thead>
                     <tr>
                       <th>#</th>
+                      <th>Gambar</th>
                       <th>Nama</th>
-                      <th>Tahun</th>
-                      <th>Tipe</th>
                       <th>Status</th>
                       <th>Aksi</th>
                     </tr>
@@ -53,23 +52,17 @@
                     }
                 },
                 {
-                    data: 'name',
-                    name: 'name'
-                },
-                {
-                    data: 'year',
-                    name: 'year'
-                },
-                {
-                    data: 'type',
-                    name: 'type',
+                    data: 'image',
+                    name: 'image',
                     render: function(data, type, row, meta) {
                         return `
-                            <span class="badge text-white bg-primary">
-                                ${row.type_label}
-                            </span>
+                            <img src="${row.image}" alt="${row.title}" class="img-fluid">
                         `
                     }
+                },
+                {
+                    data: 'title',
+                    name: 'title'
                 },
                 {
                     data: 'is_active',

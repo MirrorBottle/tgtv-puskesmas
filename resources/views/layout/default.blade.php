@@ -63,8 +63,10 @@
         ***********************************-->
         <div class="nav-header">
             <a href="{!! url('/dashboard'); !!}" class="brand-logo">
-			<img class="logo-compact" src="{{ asset(setting('logo')) }}" alt="">
-            <img class="brand-title" src="{{ asset(setting('logo')) }}" alt="">
+                <img class="logo-abbr" src="{{ asset(setting('logo')) }}" alt="">
+                <img class="logo-compact" src="{{ asset(setting('logo')) }}" alt="">
+                <p class="brand-title" src="{{ asset(setting('logo')) }}" alt="">
+                <p class="brand-title">Puskesmas <br>Loa Kulu</p>
             </a>
 
             <div id="nav-control" class="nav-control">

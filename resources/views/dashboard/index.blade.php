@@ -5,6 +5,7 @@
 
 {{-- Content --}}
 @section('content')
+
 <!-- row -->
 <div class="container-fluid">
 	<div class="row">
@@ -13,11 +14,11 @@
 				<div class="card-body p-4">
 					<div class="media">
 						<span class="mr-3">
-							<i class="flaticon-381-file-1"></i>
+							<i class="flaticon-381-user-1"></i>
 						</span>
 						<div class="media-body text-white text-right">
-							<p class="mb-1">Experience</p>
-							<h3 class="text-white">{{$experiences}}</h3>
+							<p class="mb-1">Total Lansia</p>
+							<h3 class="text-white">{{$elderlies}}</h3>
 						</div>
 					</div>
 				</div>
@@ -28,11 +29,11 @@
 				<div class="card-body p-4">
 					<div class="media">
 						<span class="mr-3">
-							<i class="flaticon-381-box"></i>
+							<i class="flaticon-381-file-1"></i>
 						</span>
 						<div class="media-body text-white text-right">
-							<p class="mb-1">Inbox</p>
-							<h3 class="text-white">{{$inboxes}}</h3>
+							<p class="mb-1">Total Data Pemeriksaan</p>
+							<h3 class="text-white">{{$elderly_records}}</h3>
 						</div>
 					</div>
 				</div>
@@ -46,7 +47,7 @@
 				<div class="col-xl-12 col-xxl-12 col-lg-12 col-md-12">
 					<div class="card">
 						<div class="card-header border-0 pb-2">
-							<h4 class="card-title">{{\Carbon\Carbon::now()->format('F')}} Order Chart</h4>
+							<h4 class="card-title">Pengujung Bulan {{\Carbon\Carbon::now()->format('F')}}</h4>
 						</div>
 						<div class="card-body pt-2">
 							<h3 class="text-primary font-w600">{{array_sum($tracks)}} Visits</h3>

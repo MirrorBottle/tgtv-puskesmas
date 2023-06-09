@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Elderly;
+use App\Models\ElderlyRecord;
 use App\Models\Experience;
 use App\Models\Inbox;
 use App\Models\Order;
@@ -49,8 +51,9 @@ class AppController extends Controller
             })->first();
             $tracks[] = $visitor ? $visitor->views : 0;
         }
-        $experiences = Experience::all()->count();
-        $inboxes = Inbox::all()->count();
-        return view('dashboard.index', compact('page_title', 'page_description','action','logo','logoText', 'tracks', 'dates', 'inboxes', 'experiences'));
+
+        $elderly_records = ElderlyRecord::all()->count();
+        $elderlies = Elderly::all()->count();
+        return view('dashboard.index', compact('page_title', 'page_description','action','logo','logoText', 'tracks', 'dates', 'elderlies', 'elderly_records'));
     }
 }

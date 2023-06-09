@@ -2,24 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\InventoryCategory;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
-class InventoryItemController extends Controller
+class ElderlyController extends Controller
 {
     public function __construct()
     {
         // module name
-        $this->module_name = 'inventory-items';
+        $this->module_name = 'elderlies';
         // module model name, path
-        $this->module_model = "App\Models\InventoryItem";
+        $this->module_model = "App\Models\Elderly";
         // page title
-        $this->page_title = 'Item';
+        $this->page_title = 'Lansia';
         // page description
-        $this->page_description = 'Item List';
+        $this->page_description = 'Daftar Lansia';
         // module singular name
-        $this->module_singular = 'Item';
+        $this->module_singular = 'Lansia';
     }
     public function index()
     {
@@ -35,13 +34,8 @@ class InventoryItemController extends Controller
     public function index_data() {
         $data = $this->module_model::select('*');
         return DataTables::of($data)
-            ->addColumn('category_name', function ($data) {
-                return $data->category->name;
-
-            })
-            ->addColumn('latest_stock', function ($data) {
-                $latest_stock = $data->stocks()->latest()->first();
-                return $latest_stock ? $latest_stock->quantity : 0 ;
+            ->editColumn('image', function($data) {
+                return asset($data->image);
             })
             ->addColumn('action', function ($data) {
                 $module_name = $this->module_name;
@@ -61,8 +55,7 @@ class InventoryItemController extends Controller
         $page_title = "Tambah $this->page_title";
         $page_description = $this->page_description;
         $action = 'default';
-        $categories = InventoryCategory::all();
-        return view("$module_name.create", compact('module_name', 'page_title', 'page_description', 'action', 'categories'));
+        return view("$module_name.create", compact('module_name', 'page_title', 'page_description', 'action'));
     }
 
     /**
@@ -74,7 +67,7 @@ class InventoryItemController extends Controller
     public function store(Request $request)
     {
         $request->merge([
-            "is_available" => $request->is_available === "on" ? 1 : 0,
+            "is_active" => $request->is_active === "on" ? 1 : 0,
         ]);
         $module_name = $this->module_name;
         $module_data = $this->module_model::create($request->all());
@@ -111,8 +104,7 @@ class InventoryItemController extends Controller
         $page_title = "Ubah $this->page_title";
         $page_description = $this->page_description;
         $action = 'default_index';
-        $categories = InventoryCategory::all();
-        return view("$module_name.edit", compact('module_name', 'page_title', 'page_description', 'action', 'module_data', 'categories'));
+        return view("$module_name.edit", compact('module_name', 'page_title', 'page_description', 'action', 'module_data'));
     }
 
     /**
@@ -125,7 +117,7 @@ class InventoryItemController extends Controller
     public function update(Request $request, $id)
     {
         $request->merge([
-            "is_available" => $request->is_available === "on" ? 1 : 0,
+            "is_active" => $request->is_active === "on" ? 1 : 0,
         ]);
         $module_name = $this->module_name;
         $module_data = $this->module_model::findOrFail($id);

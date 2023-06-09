@@ -5,20 +5,20 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
-class MissionController extends Controller
+class ElderlyRecordController extends Controller
 {
     public function __construct()
     {
         // module name
-        $this->module_name = 'missions';
+        $this->module_name = 'elderly-records';
         // module model name, path
-        $this->module_model = "App\Models\Mission";
+        $this->module_model = "App\Models\ElderlyRecord";
         // page title
-        $this->page_title = 'Visi Misi';
+        $this->page_title = 'Pemeriksaan Lansia';
         // page description
-        $this->page_description = 'Visi Misi List';
+        $this->page_description = 'Daftar Pemeriksaan Lansia';
         // module singular name
-        $this->module_singular = 'Visi Misi';
+        $this->module_singular = 'Pemeriksaan Lansia';
     }
     public function index()
     {

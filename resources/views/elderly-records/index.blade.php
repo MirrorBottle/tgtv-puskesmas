@@ -10,15 +10,19 @@
         <div class="card">
             <div class="card-header d-flex align-items-center justify-content-between">
                 <h4 class="card-title">Daftar {{$module_singular}}</h4>
+                <a href="{{route("$module_name.create")}}" class="btn btn-primary btn-sm">
+                    <i class="fas fa-plus"></i>
+                    Tambah {{$module_singular}}
+                </a>
             </div>
             <div class="card-body">
               <table id="datatable" class="display">
                 <thead>
                     <tr>
                       <th>#</th>
+                      <th>Gambar</th>
                       <th>Nama</th>
-                      <th>Email</th>
-                      <th>Pesan</th>
+                      <th>Status</th>
                       <th>Aksi</th>
                     </tr>
                 </thead>
@@ -48,16 +52,28 @@
                     }
                 },
                 {
-                    data: 'name',
-                    name: 'name'
+                    data: 'image',
+                    name: 'image',
+                    render: function(data, type, row, meta) {
+                        return `
+                            <img src="${row.image}" alt="${row.title}" class="img-fluid">
+                        `
+                    }
                 },
                 {
-                    data: 'email',
-                    name: 'email'
+                    data: 'title',
+                    name: 'title'
                 },
                 {
-                    data: 'message',
-                    name: 'message'
+                    data: 'is_active',
+                    name: 'is_active',
+                    render: function(data, type, row, meta) {
+                        return `
+                            <span class="badge text-white bg-${row.is_active == 1 ? 'success' : 'danger'}">
+                                ${row.is_active == 1 ? 'Aktif' : 'Nonaktif'}
+                            </span>
+                        `
+                    }
                 },
                 {
                     data: 'action',

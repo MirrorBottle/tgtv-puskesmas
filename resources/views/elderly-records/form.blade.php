@@ -11,8 +11,8 @@
     <div class="col-12">
       <div class="form-group">
         <?php
-        $field_name = 'name';
-        $field_label = 'Nama Perusahaan';
+        $field_name = 'title';
+        $field_label = 'Nama';
         $field_placeholder = $field_label;
         $required = "required";
         ?>
@@ -23,29 +23,17 @@
     <div class="col-12">
       <div class="form-group">
         <?php
-        $field_name = 'year';
-        $field_label = 'Tahun';
-        $field_placeholder = $field_label;
+        $field_name = 'image';
+        $field_lable = "Gambar";
+        $field_placeholder = $field_lable;
         $required = "required";
         ?>
-        {{ html()->label($field_label, $field_name) }} {!! fielf_required($required) !!}
-        {{ html()->number($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"])->addClass($errors->has($field_name) ? 'is-invalid' : '') }}
-      </div>
-    </div>
-    <div class="col-12">
-      <div class="form-group">
-        <?php
-        $field_name = 'type';
-        $field_label = 'Tipe';
-        $field_placeholder = $field_label;
-        $required = "required";
-        ?>
-        {{ html()->label($field_label, $field_name) }} {!! fielf_required($required) !!}
-        <div class="d-flex justify-content-center align-items-center">
-          <select name="{{$field_name}}" class="form-control multi-select mr-2" value="{{ old($field_name) }}" placeholder="{{$field_placeholder}}" id="pickup-select">
-              <option {{isset($module_data) && $module_data->type == '1' ? 'selected' : ''}} value="1">Catering</option>
-              <option {{isset($module_data) && $module_data->type == '2' ? 'selected' : ''}} value="2">Rental</option>
-          </select>
+        {!! Form::label("$field_name", "$field_lable") !!} {!! fielf_required($required) !!}
+        <div class="input-group mb-3">
+          {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required", 'aria-label'=>'Image', 'aria-describedby'=>'button-image']) }}
+          <div class="input-group-append">
+            <button class="btn btn-info" type="button" id="button-image"><i class="fas fa-folder-open"></i> @lang('Browse')</button>
+          </div>
         </div>
       </div>
     </div>
@@ -63,3 +51,26 @@
     </div>
   </div>
 </div>
+
+@push('addition-styles')
+<!-- File Manager -->
+<link rel="stylesheet" href="{{ asset('vendor/file-manager/css/file-manager.css') }}">
+@endpush
+
+@push ('addition-scripts')
+<script type="text/javascript" src="{{ asset('vendor/file-manager/js/file-manager.js') }}"></script>
+
+<script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function() {
+      document.getElementById('button-image').addEventListener('click', (event) => {
+          event.preventDefault();
+          window.open('/file-manager/fm-button', 'fm', 'width=800,height=600');
+      });
+  });
+
+  // set file link
+  function fmSetLink($url) {
+      document.getElementById('image').value = $url;
+  }
+</script>
+@endpush

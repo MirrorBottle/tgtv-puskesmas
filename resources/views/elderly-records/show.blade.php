@@ -19,32 +19,34 @@
             <table class="table table-bordered table-striped verticle-middle table-responsive-sm">
               <tbody>
                 <tr>
-                  <th scope="row">Kode Barang</th>
-                  <td>{{$module_data->code}}</td>
+                  <th scope="row" st>Judul</th>
                 </tr>
                 <tr>
-                  <th scope="row">Nama Barang</th>
-                  <td>{{$module_data->name}}</td>
-                </tr>
-                <tr>
-                  <th scope="row">Kategori</th>
-                  <td>{{$module_data->category->name}}</td>
-                </tr>
-                <tr>
-                  <th scope="row">Status</th>
                   <td>
-                    <span class="badge text-white bg-{{$module_data->is_available == 1 ? 'success' : 'danger'}}">
-                      {{$module_data->is_available == 1 ? 'Aktif' : 'Nonaktif'}}
-                  </span>
+                    {{$module_data->title}}
                   </td>
                 </tr>
                 <tr>
-                  <th scope="row">Peringatan Stok Rendah</th>
-                  <td>{{$module_data->low_quantity}} ({{ $module_data->unit }})</td>
+                  <th scope="row">Status</th>
                 </tr>
                 <tr>
-                  <th scope="row">Deskripsi</th>
+                  <td><span class="badge text-white bg-{{$module_data->is_active == 1 ? 'success' : 'danger'}}">
+                    {{$module_data->is_active == 1 ? 'Aktif' : 'Nonaktif'}}
+                   </span></td>
+                </tr>
+                <tr>
+                  <th scope="row" st>Deskripsi</th>
+                </tr>
+                <tr>
                   <td>{{$module_data->description}}</td>
+                </tr>
+                <tr>
+                  <th scope="row" st>Gambar</th>
+                </tr>
+                <tr>
+                  <td>
+                    <img src="{{asset($module_data->image)}}" alt="{{$module_data->title}}" class="img-fluid img-thumbnail">
+                  </td>
                 </tr>
               </tbody>
             </table>
