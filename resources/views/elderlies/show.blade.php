@@ -10,43 +10,45 @@
         <div class="card">
           <div class="card-header d-flex align-items-center justify-content-between">
               <h4 class="card-title">Detail {{$module_singular}}</h4>
-              <a href="{{route("$module_name.index")}}" class="btn btn-primary btn-sm">
+              <div>
+                <a href="{{route("$module_name.index")}}" class="btn btn-danger text-white btn-sm">
+                  <i class="fas fa-flag"></i>
+                  Diagnosa Kematian
+                </a>
+                <a href="{{route("$module_name.index")}}" class="btn btn-primary btn-sm">
                   <i class="fas fa-arrow-left"></i>
                   Kembali
-              </a>
+                </a>
+              </div>
           </div>
           <div class="card-body">
             <table class="table table-bordered table-striped verticle-middle table-responsive-sm">
               <tbody>
                 <tr>
-                  <th scope="row" st>Judul</th>
+                  <th scope="row" colspan="2">Nama</th>
+                  <th scope="row">NIK</th>
                 </tr>
                 <tr>
-                  <td>
-                    {{$module_data->title}}
-                  </td>
+                  <td  colspan="2">{{$module_data->name}}</td>
+                  <td>{{$module_data->nik}}</td>
                 </tr>
                 <tr>
-                  <th scope="row">Status</th>
+                  <th scope="row">Usia, Tgl. Lahir</th>
+                  <th scope="row">Jenis Kelamin</th>
+                  <th scope="row">Edukasi Terakhir</th>
                 </tr>
                 <tr>
-                  <td><span class="badge text-white bg-{{$module_data->is_active == 1 ? 'success' : 'danger'}}">
-                    {{$module_data->is_active == 1 ? 'Aktif' : 'Nonaktif'}}
-                   </span></td>
+                  <td>{{ $module_data->age }} Thn, {{ $module_data->birth_date->translatedFormat('d F Y') }}</td>
+                  <td>{{ $module_data->gender }}</td>
+                  <td>{{ $module_data->last_education }}</td>
                 </tr>
                 <tr>
-                  <th scope="row" st>Deskripsi</th>
+                  <th scope="row" colspan="2">Alamat</th>
+                  <th scope="row">No. HP</th>
                 </tr>
                 <tr>
-                  <td>{{$module_data->description}}</td>
-                </tr>
-                <tr>
-                  <th scope="row" st>Gambar</th>
-                </tr>
-                <tr>
-                  <td>
-                    <img src="{{asset($module_data->image)}}" alt="{{$module_data->title}}" class="img-fluid img-thumbnail">
-                  </td>
+                  <td  colspan="2">{{$module_data->address}}</td>
+                  <td>{{$module_data->phone_number}}</td>
                 </tr>
               </tbody>
             </table>

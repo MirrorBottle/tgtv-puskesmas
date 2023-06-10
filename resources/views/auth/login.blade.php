@@ -10,9 +10,10 @@
             <div class="row no-gutters">
                 <div class="col-xl-12">
                     <div class="auth-form">
-                        <div class="text-center mb-4 pb-4">
+                        <div class="text-center mb-2">
                             <img src="{{ asset(setting('logo')) }}" style="width: 12rem;">
                         </div>
+                        <h2 class="text-center font-weight-bold">Puskesmas <br>Loa Kulu</h2>
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
                             <div class="form-group">

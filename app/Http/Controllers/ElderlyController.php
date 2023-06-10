@@ -32,14 +32,18 @@ class ElderlyController extends Controller
     }
 
     public function index_data() {
+        $module_name = $this->module_name;
         $data = $this->module_model::select('*');
         return DataTables::of($data)
-            ->editColumn('image', function($data) {
-                return asset($data->image);
+            ->addColumn('age', function($data) {
+                return $data->age . " Thn";
             })
-            ->addColumn('action', function ($data) {
+            ->addColumn('last_record', function($data) {
+                return $data->last_record ? '-' : '-';
+            })
+            ->addColumn('action', function ($data) use ($module_name) {
                 $module_name = $this->module_name;
-                return view('components.action_column', compact('module_name', 'data'));
+                return view("$module_name.action_column", compact('module_name', 'data'));
             })
             ->toJson();
     }
@@ -66,9 +70,6 @@ class ElderlyController extends Controller
      */
     public function store(Request $request)
     {
-        $request->merge([
-            "is_active" => $request->is_active === "on" ? 1 : 0,
-        ]);
         $module_name = $this->module_name;
         $module_data = $this->module_model::create($request->all());
         return redirect()->route("$module_name.index")->with('status', "$this->module_singular baru berhasil dibuat!");
@@ -116,9 +117,6 @@ class ElderlyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->merge([
-            "is_active" => $request->is_active === "on" ? 1 : 0,
-        ]);
         $module_name = $this->module_name;
         $module_data = $this->module_model::findOrFail($id);
         $module_data->update($request->all());

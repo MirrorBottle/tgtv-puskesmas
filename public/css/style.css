@@ -53950,7 +53950,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 }
 
 [data-primary=color_3] .card-action .custom-dropdown {
-  background: #f8963a;
+  background: #16a010;
 }
 
 [data-primary=color_3] .card-action .custom-dropdown.show,
@@ -54049,8 +54049,8 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 }
 
 [data-primary=color_3] .bgl-primary {
-  background: #f8963a;
-  border-color: #f8963a;
+  background: #16a010;
+  border-color: #16a010;
   color: #005128;
 }
 
@@ -68318,7 +68318,7 @@ button:focus {
 
 .card-action .custom-dropdown {
   margin: 0px;
-  background: #f8963a;
+  background: #16a010;
 }
 
 .card-action .custom-dropdown.show,
@@ -70439,7 +70439,7 @@ code {
 
 .picker .picker__frame .picker__box .picker__header .picker__nav--prev:hover,
 .picker .picker__frame .picker__box .picker__header .picker__nav--next:hover {
-  background-color: #f8963a !important;
+  background-color: #16a010 !important;
   color: #005128 !important;
 }
 
@@ -70482,17 +70482,17 @@ code {
 .picker .picker__frame .picker__box .picker__table .picker__day.picker__day--highlighted {
   border: 0 !important;
   padding: 0;
-  background-color: #f8963a !important;
+  background-color: #16a010 !important;
   color: #005128 !important;
 }
 
 .picker .picker__frame .picker__box .picker__table .picker__day:hover {
-  background-color: #f8963a !important;
+  background-color: #16a010 !important;
   color: #005128 !important;
 }
 
 .picker .picker__frame .picker__box .picker__footer .picker__button--today {
-  background-color: #f8963a !important;
+  background-color: #16a010 !important;
   color: #005128 !important;
 }
 
@@ -70511,7 +70511,7 @@ code {
 .picker .picker__frame .picker__box .picker__footer .picker__button--clear:hover,
 .picker .picker__frame .picker__box .picker__footer .picker__button--close:hover,
 .picker .picker__frame .picker__box .picker__footer .picker__button--today:hover {
-  background-color: #f8963a !important;
+  background-color: #16a010 !important;
   color: #005128 !important;
 }
 
@@ -70978,21 +70978,21 @@ table.dataTable tfoot th {
 .dataTables_wrapper .dataTables_paginate .paginate_button:active,
 .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
   color: #005128 !important;
-  background: #f8963a;
+  background: #16a010;
   border: 0 !important;
   box-shadow: none;
 }
 
 .dataTables_wrapper .dataTables_paginate .paginate_button.current {
   color: #005128 !important;
-  background: #f8963a;
+  background: #16a010;
   border: 0 !important;
 }
 
 .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover,
 .dataTables_wrapper .dataTables_paginate .paginate_button.previous:hover,
 .dataTables_wrapper .dataTables_paginate .paginate_button.next:hover {
-  background: #f8963a;
+  background: #16a010;
   color: #005128 !important;
 }
 
