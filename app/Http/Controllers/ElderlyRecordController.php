@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Elderly;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -49,13 +50,14 @@ class ElderlyRecordController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
         $module_name = $this->module_name;
         $page_title = "Tambah $this->page_title";
         $page_description = $this->page_description;
+        $elderly = Elderly::find($id);
         $action = 'default';
-        return view("$module_name.create", compact('module_name', 'page_title', 'page_description', 'action'));
+        return view("$module_name.create", compact('module_name', 'page_title', 'page_description', 'action', 'elderly'));
     }
 
     /**

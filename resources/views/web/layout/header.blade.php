@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Makaan - Real Estate HTML Template</title>
+    <title>{{ setting('app_name') }}</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -25,6 +25,8 @@
     <link href="{{ asset('web/lib/animate/animate.min.css') }}" rel="stylesheet">
     <link href="{{ asset('web/lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
 
+    <script src="https://kit.fontawesome.com/298ddad7ce.js" crossorigin="anonymous"></script>
+    
     <!-- Customized Bootstrap Stylesheet -->
     <link href="{{ asset('web/css/bootstrap.min.css') }}" rel="stylesheet">
 
@@ -38,11 +40,11 @@
         <div class="container-fluid nav-bar bg-transparent">
             <nav class="navbar navbar-expand-lg bg-white navbar-light py-0 px-4">
                 <a href="index.html" class="navbar-brand d-flex align-items-center text-center">
-                    <div class="icon p-2 me-2">
-                        <img class="img-fluid" src="img/icon-deal.png" alt="Icon"
-                            style="width: 30px; height: 30px;">
+                    <div class="p-2 me-2">
+                        <img class="img-fluid" src="{{ asset(setting('logo')) }}" alt="Icon"
+                            style="width: 50px">
                     </div>
-                    <h1 class="m-0 text-primary">Makaan</h1>
+                    <h3 class="m-0 text-black text-left" style="text-align: left; line-height: 1;">Puskesmas <br>Loa Kulu</h3>
                 </a>
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse"
                     data-bs-target="#navbarCollapse">
@@ -50,26 +52,11 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto">
-                        <a href="index.html" class="nav-item nav-link active">Home</a>
-                        <a href="about.html" class="nav-item nav-link">About</a>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Property</a>
-                            <div class="dropdown-menu rounded-0 m-0">
-                                <a href="property-list.html" class="dropdown-item">Property List</a>
-                                <a href="property-type.html" class="dropdown-item">Property Type</a>
-                                <a href="property-agent.html" class="dropdown-item">Property Agent</a>
-                            </div>
-                        </div>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                            <div class="dropdown-menu rounded-0 m-0">
-                                <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                                <a href="404.html" class="dropdown-item">404 Error</a>
-                            </div>
-                        </div>
-                        <a href="contact.html" class="nav-item nav-link">Contact</a>
+                        <a href="index.html" class="nav-item nav-link active">Beranda</a>
+                        <a href="about.html" class="nav-item nav-link">Tentang</a>
+                        <a href="about.html" class="nav-item nav-link">Galeri</a>
+                        <a href="about.html" class="nav-item nav-link">Lampiran</a>
                     </div>
-                    <a href="" class="btn btn-primary px-3 d-none d-lg-flex">Add Property</a>
                 </div>
             </nav>
         </div>

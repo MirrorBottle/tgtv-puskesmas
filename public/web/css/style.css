@@ -259,6 +259,10 @@
     color: #FFFFFF !important;
 }
 
+.cat-item:hover i {
+    color: var(--primary)!important;
+}
+
 
 /*** Property List ***/
 .nav-pills .nav-item .btn {

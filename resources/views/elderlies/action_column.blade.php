@@ -7,7 +7,7 @@
         <x-buttons.show route='{!! route("$module_name.show", $data) !!}'
             title="{{ __('Show') }} {{ ucwords(Str::singular($module_name)) }}" small="true" />
     @endif
-    <a href=''
+    <a href="{{ route("elderly-records.create", $data->id) }}"
         class='btn btn-success text-white btn-sm'
         data-toggle="tooltip" title="">
         <i class="flaticon-381-add"></i>

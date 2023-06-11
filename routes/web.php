@@ -46,7 +46,8 @@ Route::group([
     Route::resource('elderlies', 'ElderlyController');
 
     Route::get('elderly-records/index_data', ['as' => 'elderly-records.index_data', 'uses' => 'ElderlyRecordController@index_data']);
-    Route::resource('elderly-records', 'ElderlyRecordController');
+    Route::get('elderly-records/{id}', ['as' => 'elderly-records.create', 'uses' => 'ElderlyRecordController@create']);
+    Route::resource('elderly-records', 'ElderlyRecordController')->except(['create']);
 
     Route::resource('setting', 'SettingController')->only(['index', 'store']);
 });
