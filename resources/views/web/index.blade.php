@@ -1,7 +1,7 @@
 @include('web.layout.header')
 
 <div class="container-fluid header bg-white p-0">
-    <div class="row g-0 align-items-center flex-column-reverse flex-md-row" style="min-height: 45rem">
+    <div class="row g-0 align-items-center flex-column-reverse flex-md-row">
         <div class="col-md-6 p-5 mt-lg-5">
             <h1 class="display-5 animated fadeIn mb-4">Terwujudnya Masyarakat Kecamatan Loa Kulu Mandiri Untuk <span class="text-primary">Hidup Sehat.</span></h1>
         </div>
@@ -27,28 +27,34 @@
             <div class="col-md-10">
                 <div class="row g-2">
                     <div class="col-md-4">
-                        <input type="text" class="form-control border-0 py-3" placeholder="NIK">
+                        <input id="search-nik" type="text" class="form-control border-0 py-3" placeholder="NIK" required>
                     </div>
                     <div class="col-md-4">
-                        <select class="form-select border-0 py-3">
-                            <option selected>Bulan</option>
-                            <option value="1">Property Type 1</option>
-                            <option value="2">Property Type 2</option>
-                            <option value="3">Property Type 3</option>
+                        <select id="search-month" class="form-select border-0 py-3">
+                            @php
+                                $months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+                            @endphp
+                            <option selected value="all">Semua</option>
+                            @foreach ($months as $month)
+                                <option value="{{ $loop->iteration }}">{{ $month }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="col-md-4">
-                        <select class="form-select border-0 py-3">
-                            <option selected>Tahun</option>
-                            <option value="1">Location 1</option>
-                            <option value="2">Location 2</option>
-                            <option value="3">Location 3</option>
+                        <select id="search-year" class="form-select border-0 py-3">
+                            @php
+                                $years = range(date('Y'), 2023)
+                            @endphp
+                            <option selected value="all">Semua</option>
+                            @foreach ($years as $year)
+                                <option value="{{ $year }}">{{ $year }}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
             </div>
             <div class="col-md-2">
-                <button class="btn btn-dark border-0 w-100 py-3">Cari</button>
+                <button id="search-btn" class="btn btn-dark border-0 w-100 py-3">Cari</button>
             </div>
         </div>
     </div>
@@ -80,12 +86,12 @@
         <div class="row g-4">
             @foreach ($services as $service)
                 <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <a class="cat-item d-block bg-light text-center rounded p-3" href="">
+                    <div class="cat-item d-block bg-light text-center rounded p-3">
                         <div class="rounded p-4">
                             <div class="icon mb-3"><i class="fa-solid {{ $service[1] }} fa-2x"></i></div>
                             <h6>{{ $service[0] }}</h6>
                         </div>
-                    </a>
+                    </div>
                 </div>
                 
             @endforeach
@@ -139,4 +145,18 @@
     </div>
 </div>
 
+@push('addition-scripts')
+    <script>
+        $(function() {
+            $("#search-btn").click(function() {
+                if($("#search-nik").val() != "") {
+                    const nik = $("#search-nik").val();
+                    const month = $("#search-month").val();
+                    const year = $("#search-year").val();
+                    window.location.href = `/pemeriksaan-lansia?nik=${nik}&month=${month}&year=${year}`;
+                }
+            })
+        })
+    </script>
+@endpush
 @include('web.layout.footer')

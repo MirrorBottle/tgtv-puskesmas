@@ -11,7 +11,7 @@
                 <div class="col-xl-12">
                     <div class="auth-form">
                         <div class="text-center mb-2">
-                            <img src="{{ asset(setting('logo')) }}" style="width: 12rem;">
+                            <img src="{{ asset(setting('logo')) }}" style="width: 8rem;">
                         </div>
                         <h2 class="text-center font-weight-bold">Puskesmas <br>Loa Kulu</h2>
                         <form method="POST" action="{{ route('login') }}">

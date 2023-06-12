@@ -35,8 +35,14 @@ class ElderlyRecordController extends Controller
     public function index_data() {
         $data = $this->module_model::select('*');
         return DataTables::of($data)
-            ->editColumn('image', function($data) {
-                return asset($data->image);
+            ->addColumn('nik', function($data) {
+                return $data->elderly->nik;
+            })
+            ->addColumn('name', function($data) {
+                return $data->elderly->name;
+            })
+            ->editColumn('recorded_at', function($data) {
+                return $data->recorded_at->translatedFormat('F Y');
             })
             ->addColumn('action', function ($data) {
                 $module_name = $this->module_name;
@@ -69,7 +75,7 @@ class ElderlyRecordController extends Controller
     public function store(Request $request)
     {
         $request->merge([
-            "is_active" => $request->is_active === "on" ? 1 : 0,
+            "is_new" => $request->is_new === "on" ? 1 : 0,
         ]);
         $module_name = $this->module_name;
         $module_data = $this->module_model::create($request->all());
@@ -119,7 +125,7 @@ class ElderlyRecordController extends Controller
     public function update(Request $request, $id)
     {
         $request->merge([
-            "is_active" => $request->is_active === "on" ? 1 : 0,
+            "is_new" => $request->is_new === "on" ? 1 : 0,
         ]);
         $module_name = $this->module_name;
         $module_data = $this->module_model::findOrFail($id);

@@ -21,8 +21,8 @@
                     <span class="nav-text">Pemeriksaan Lansia</span>
                 </a>
             </li>
-            <li class="{{ Request::is('elderly-records*') ? 'mm-active' : '' }}">
-                <a href="{{ route('elderly-records.index') }}" class="ai-icon" aria-expanded="false">
+            <li class="{{ Request::is('elderly-records/export*') ? 'mm-active' : '' }}">
+                <a href="{{ route('elderly-records.export_view') }}" class="ai-icon" aria-expanded="false">
                     <i class="flaticon-381-download"></i>
                     <span class="nav-text">Laporan</span>
                 </a>
@@ -41,6 +41,18 @@
                 </ul>
             </li> --}}
             @if (auth()->user()->isRoleAdmin)
+                <li>
+                    <a class="has-arrow ai-icon mt-2" href="javascript:void(0);" aria-expanded="false">
+                        <i class="flaticon-381-internet"></i>
+                        <span class="nav-text">Web Master</span>
+                    </a>
+                    <ul aria-expanded="false">
+                        <li class="{{ Request::is('users*') ? 'mm-active' : '' }}"><a href="{{ route('users.index') }}">Homepage</a></li>
+                        <li class="{{ Request::is('setting*') ? 'mm-active' : '' }}"><a href="{{ route('setting.index') }}">Tentang</a></li>
+                        <li class="{{ Request::is('setting*') ? 'mm-active' : '' }}"><a href="{{ route('setting.index') }}">Galeri</a></li>
+                        <li class="{{ Request::is('setting*') ? 'mm-active' : '' }}"><a href="{{ route('setting.index') }}">Lampiran</a></li>
+                    </ul>
+                </li>
                 <li>
                     <a class="has-arrow ai-icon mt-2" href="javascript:void(0);" aria-expanded="false">
                         <i class="flaticon-381-database"></i>

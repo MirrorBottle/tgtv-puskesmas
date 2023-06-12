@@ -163,9 +163,6 @@
 
 /*** Header ***/
 @media (min-width: 992px) {
-    .header {
-        margin-top: -120px;
-    }
 }
 
 .header-carousel .owl-nav {
