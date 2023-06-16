@@ -25,7 +25,7 @@ class CreateElderliesTable extends Migration
 
             $table->boolean("is_deceased")->default(0);
             $table->text("cause_of_death")->nullable();
-            $table->dateTime("deceased_at")->nullable();
+            $table->date("deceased_at")->nullable();
             $table->timestamps();
         });
     }

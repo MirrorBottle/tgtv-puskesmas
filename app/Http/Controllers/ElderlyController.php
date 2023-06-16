@@ -135,4 +135,20 @@ class ElderlyController extends Controller
         $module_data->delete();
         return response()->json(['statusCode' => 200, 'message' => 'Data berhasil dihapus']);
     }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function death($id)
+    {
+        $module_name = $this->module_name;
+        $module_data = $this->module_model::findOrFail($id);
+        $page_title = "Diagnosa Kematian";
+        $page_description = $this->page_description;
+        $action = 'default_index';
+        return view("$module_name.death", compact('module_name', 'page_title', 'page_description', 'action', 'module_data'));
+    }
 }

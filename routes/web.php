@@ -47,6 +47,8 @@ Route::group([
     Route::resource('galleries', 'GalleryController');
 
     Route::get('elderlies/index_data', ['as' => 'elderlies.index_data', 'uses' => 'ElderlyController@index_data']);
+    Route::get('elderlies/death/{id}', ['as' => 'elderlies.death', 'uses' => 'ElderlyController@death']);
+
     Route::resource('elderlies', 'ElderlyController');
 
     Route::get('elderly-records/export', ['as' => 'elderly-records.export_view', 'uses' => 'ElderlyRecordController@export_view']);

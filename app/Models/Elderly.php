@@ -11,7 +11,7 @@ class Elderly extends Model
     use HasFactory;
 
     protected $guarded = [];
-    protected $dates = ['birth_date'];
+    protected $dates = ['birth_date', 'deceased_at'];
 
     public function records() {
         return $this->hasMany(ElderlyRecord::class, 'elderly_id', 'id');
