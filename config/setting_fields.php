@@ -31,7 +31,7 @@ return [
                 'label' => 'Email', // you know what label it is
                 'rules' => 'required|email', // validation rule of laravel
                 'class' => '', // any class for input
-                'value' => 'yulinasari133@yahoo.com', // default value if you want
+                'value' => 'loakulupuskesmas@gmail.com', // default value if you want
             ],
             [
                 'type'  => 'text', // input fields type
@@ -49,7 +49,7 @@ return [
                 'label' => 'Alamat', // you know what label it is
                 'rules' => 'required', // validation rule of laravel
                 'class' => '', // any class for input
-                'value' => 'Desa Bakungan RT. 15, Kecamatan Loa Janan, Kabupaten Kutaikartanegara, Kalimantan Timur', // default value if you want
+                'value' => '-', // default value if you want
             ],
             [
                 'type'  => 'text', // input fields type
@@ -58,7 +58,7 @@ return [
                 'label' => 'Google Map', // you know what label it is
                 'rules' => 'required', // validation rule of laravel
                 'class' => '', // any class for input
-                'value' => 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.6032078903304!2d117.0442083147534!3d-0.5949709995659305!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMMKwMzUnNDEuOSJTIDExN8KwMDInNDcuMCJF!5e0!3m2!1sid!2sid!4v1634047154558!5m2!1sid!2sid', // default value if you want
+                'value' => 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.657885828804!2d117.0207672!3d-0.5138205!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2df67d0e1ea3d4e1%3A0x496974b5b4a63d7d!2sPuskesmas%20Loa%20Kulu!5e0!3m2!1sen!2sid!4v1686511543233!5m2!1sen!2sid', // default value if you want
             ],
             [
                 'type'  => 'file', // input fields type
@@ -81,70 +81,73 @@ return [
 
         ],
     ],
-    'about' => [
-        'title' => 'Tentang',
-        'desc'  => 'Bagian Tentang di Halaman Depan',
+    'homepage' => [
+        'title' => 'Beranda',
+        'desc'  => 'Bagian Beranda di Halaman Depan',
         'icon'  => 'fas fa-home',
 
         'elements' => [
             [
-                'type'  => 'text', // input fields type
+                'type'  => 'editor', // input fields type
                 'data'  => 'string', // data type, string, int, boolean
-                'name'  => 'about_header', // unique name for field
-                'label' => 'Judul Tentang', // you know what label it is
-                'rules' => 'required|nullable|max:191', // validation rule of laravel
+                'name'  => 'homepage_banner', // unique name for field
+                'label' => 'Tulisan Banner Beranda', // you know what label it is
+                'rules' => 'required|nullable', // validation rule of laravel
                 'class' => '', // any class for input
                 'value' => 'Kami menyediakan Catering dan Rental.', // default value if you want
             ],
             [
                 'type'  => 'file', // input fields type
                 'data'  => 'string', // data type, string, int, boolean
-                'name'  => 'about_image', // unique name for field
-                'label' => 'Gambar', // you know what label it is
-                'rules' => 'required|nullable|max:191', // validation rule of laravel
+                'name'  => 'homepage_hours_file', // unique name for field
+                'label' => 'Gambar Jam Pelayanan', // you know what label it is
+                'rules' => 'required|nullable', // validation rule of laravel
                 'class' => '', // any class for input
-                'value' => 'storage/files/logo/header.svg', // default value if you want
+                'value' => 'storage/files/foto-7.jpg', // default value if you want
+            ],
+            [
+                'type'  => 'editor', // input fields type
+                'data'  => 'string', // data type, string, int, boolean
+                'name'  => 'homepage_hours', // unique name for field
+                'label' => 'Jam Pelayanan', // you know what label it is
+                'rules' => 'required|nullable', // validation rule of laravel
+                'class' => '', // any class for input
+                'value' => 'Kami menyediakan Catering dan Rental.', // default value if you want
             ],
             [
                 'type'  => 'file', // input fields type
                 'data'  => 'string', // data type, string, int, boolean
-                'name'  => 'about_resume', // unique name for field
-                'label' => 'Resume', // you know what label it is
-                'rules' => 'required|nullable|max:191', // validation rule of laravel
+                'name'  => 'homepage_contact_file', // unique name for field
+                'label' => 'Gambar Hubungi Kami', // you know what label it is
+                'rules' => 'required|nullable', // validation rule of laravel
                 'class' => '', // any class for input
-                'value' => '/images/header.svg', // default value if you want
+                'value' => 'storage/files/foto-6.jpg', // default value if you want
+            ],
+            [
+                'type'  => 'editor', // input fields type
+                'data'  => 'string', // data type, string, int, boolean
+                'name'  => 'homepage_contact', // unique name for field
+                'label' => 'Tulisan Hubungi Kami', // you know what label it is
+                'rules' => 'required|nullable', // validation rule of laravel
+                'class' => '', // any class for input
+                'value' => 'Kami menyediakan Catering dan Rental.', // default value if you want
             ],
         ],
     ],
-    'experience' => [
-        'title' => 'Experience',
-        'desc'  => 'Bagian Experience di Halaman Depan',
-        'icon'  => 'fas fa-user-tie',
+    'about' => [
+        'title' => 'Tentang',
+        'desc'  => 'Bagian Tentang di Halaman Depan',
+        'icon'  => 'fas fa-user',
+
         'elements' => [
             [
                 'type'  => 'editor', // input fields type
                 'data'  => 'string', // data type, string, int, boolean
-                'name'  => 'experience_description', // unique name for field
-                'label' => 'Deskripsi Experience', // you know what label it is
-                'rules' => 'required|nullable|max:191', // validation rule of laravel
+                'name'  => 'about_page', // unique name for field
+                'label' => 'Judul Tentang', // you know what label it is
+                'rules' => 'required|nullable', // validation rule of laravel
                 'class' => '', // any class for input
-                'value' => 'Puskesmas Loa Kulu', // default value if you want
-            ],
-        ],
-    ],
-    'contact' => [
-        'title' => 'Kontak',
-        'desc'  => 'Bagian Kontak di Halaman Depan',
-        'icon'  => 'fas fa-phone',
-        'elements' => [
-            [
-                'type'  => 'text', // input fields type
-                'data'  => 'string', // data type, string, int, boolean
-                'name'  => 'contact_title', // unique name for field
-                'label' => 'Judul Kontak', // you know what label it is
-                'rules' => 'required|nullable|max:191', // validation rule of laravel
-                'class' => '', // any class for input
-                'value' => 'Tertarik bekerja sama? Hubungi kami!', // default value if you want
+                'value' => 'Kami menyediakan Catering dan Rental.', // default value if you want
             ],
         ],
     ],
@@ -161,7 +164,7 @@ return [
                 'label' => 'Meta Site Name', // you know what label it is
                 'rules' => 'required', // validation rule of laravel
                 'class' => '', // any class for input
-                'value' => 'Perumdam Tirta Kencana Kota Samarinda', // default value if you want
+                'value' => 'Puskesmas Loa Kulu', // default value if you want
             ],
             [
                 'type'  => 'text', // input fields type
@@ -170,7 +173,7 @@ return [
                 'label' => 'Meta Description', // you know what label it is
                 'rules' => 'required', // validation rule of laravel
                 'class' => '', // any class for input
-                'value' => 'Perumdam Tirta Kencana Kota Samarinda.', // default value if you want
+                'value' => 'Puskesmas Loa Kulu', // default value if you want
             ],
             [
                 'type'  => 'text', // input fields type

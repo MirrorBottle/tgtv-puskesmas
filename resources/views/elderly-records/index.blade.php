@@ -10,6 +10,10 @@
                 <div class="card">
                     <div class="card-header d-flex align-items-center justify-content-between">
                         <h4 class="card-title">Daftar {{ $module_singular }}</h4>
+                        <a href="{{ route("$module_name.export_view") }}" class="btn btn-primary btn-sm">
+                            <i class="fas fa-download"></i>
+                            Export Laporan
+                        </a>
                     </div>
                     <div class="card-body">
                         <table id="datatable" class="display">

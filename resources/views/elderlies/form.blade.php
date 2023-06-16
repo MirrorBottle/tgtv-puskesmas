@@ -81,14 +81,12 @@
             $required = "required";
             ?>
             {{ html()->label($field_label, $field_name) }} {!! fielf_required($required) !!}
-            <div class="form-control">
-              <div class="form-check form-check-inline">
-                {{ html()->radio($field_name, false, "L")->class('form-check-input')->attributes(["$required"])->addClass($errors->has($field_name) ? 'is-invalid' : '') }}
-                <label class="form-check-label" for="gender_l">Laki-laki (L)</label>
-              </div>
-              <div class="form-check form-check-inline">
-                {{ html()->radio($field_name, false, "P")->class('form-check-input')->attributes(["$required"])->addClass($errors->has($field_name) ? 'is-invalid' : '') }}
-                <label class="form-check-label" for="gender_p">Perempuan (P)</label>
+            <div class="form-group">
+              <div class="d-flex justify-content-center align-items-center">
+                <select name="{{$field_name}}" class="form-control multi-select mr-2" value="{{ old($field_name) }}" placeholder="{{$field_placeholder}}">
+                  <option {{isset($module_data) && $module_data->gender == "L" ? 'selected' : ''}} value="L">Laki-laki (L)</option>
+                  <option {{isset($module_data) && $module_data->gender == "P" ? 'selected' : ''}} value="P">Perempuan (P)</option>
+                </select>
               </div>
             </div>
           </div>

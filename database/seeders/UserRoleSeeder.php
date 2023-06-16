@@ -19,6 +19,11 @@ class UserRoleSeeder extends Seeder
 
         $userAdmin = User::find(1)->assignRole($admin);
         $userPenyelia = User::find(2)->assignRole($user);
+        $userPenyelia = User::find(3)->assignRole($user);
+        $userPenyelia = User::find(4)->assignRole($user);
+        $userPenyelia = User::find(5)->assignRole($user);
+        $userPenyelia = User::find(6)->assignRole($user);
+
 
     }
 }

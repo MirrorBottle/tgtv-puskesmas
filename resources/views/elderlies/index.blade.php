@@ -20,11 +20,7 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>NIK</th>
-                                    <th>Nama</th>
-                                    <th>Umur</th>
-                                    <th>Gender</th>
-                                    <th>Pemeriksaan Terakhir</th>
+                                    <th>Nama - NIK</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -47,29 +43,18 @@
                 columns: [{
                         data: 'id',
                         name: 'id',
+                        width: 50,
                         render: function(data, type, row, meta) {
                             return meta.row + meta.settings._iDisplayStart + 1;
                         }
                     },
                     {
                         data: 'nik',
-                        name: 'nik'
-                    },
-                    {
-                        data: 'name',
-                        name: 'name'
-                    },
-                    {
-                        data: 'age',
-                        name: 'age'
-                    },
-                    {
-                        data: 'gender',
-                        name: 'gender'
-                    },
-                    {
-                        data: 'last_record',
-                        name: 'last_record'
+                        name: 'nik',
+                        width: 100,
+                        render: function(data, type, row, meta) {
+                            return `${row.name} <br> ${row.nik}`
+                        }
                     },
                     {
                         data: 'action',

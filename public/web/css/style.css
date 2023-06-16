@@ -277,6 +277,10 @@
 
 .property-item img {
     transition: .5s;
+    height: 20rem;
+    width: 100%;
+    background-size: cover;
+    object-fit: cover;
 }
 
 .property-item:hover img {

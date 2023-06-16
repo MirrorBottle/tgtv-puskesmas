@@ -110,9 +110,10 @@ class ElderlyRecordController extends Controller
         $module_name = $this->module_name;
         $module_data = $this->module_model::findOrFail($id);
         $page_title = "Ubah $this->page_title";
+        $elderly = Elderly::find($id);
         $page_description = $this->page_description;
         $action = 'default_index';
-        return view("$module_name.edit", compact('module_name', 'page_title', 'page_description', 'action', 'module_data'));
+        return view("$module_name.edit", compact('module_name', 'page_title', 'page_description', 'action', 'module_data', 'elderly'));
     }
 
     /**
@@ -144,5 +145,18 @@ class ElderlyRecordController extends Controller
         $module_data = $this->module_model::findOrFail($id);
         $module_data->delete();
         return response()->json(['statusCode' => 200, 'message' => 'Data berhasil dihapus']);
+    }
+
+    
+
+    public function export_view()
+    {
+        $module_name = $this->module_name;
+        $module_singular = $this->module_singular;
+        $module_data = $this->module_model::paginate();
+        $page_title = "Laporan $this->page_title";
+        $page_description = $this->page_description;
+        $action = 'default';
+        return view("$module_name.export", compact('page_title', 'page_description', 'action', 'module_data', 'module_name', 'module_singular'));
     }
 }

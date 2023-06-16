@@ -25,7 +25,7 @@
     <link href="{{ asset('web/lib/animate/animate.min.css') }}" rel="stylesheet">
     <link href="{{ asset('web/lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
 
-    <script src="https://kit.fontawesome.com/298ddad7ce.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/2136f01711.js" crossorigin="anonymous"></script>
     
     <!-- Customized Bootstrap Stylesheet -->
     <link href="{{ asset('web/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -39,12 +39,12 @@
         <!-- Navbar Start -->
         <div class="container-fluid nav-bar bg-transparent">
             <nav class="navbar navbar-expand-lg bg-white navbar-light py-0 px-4">
-                <a href="index.html" class="navbar-brand d-flex align-items-center text-center">
+                <a href="/" class="navbar-brand d-flex align-items-center text-center">
                     <div class="p-2 me-2">
                         <img class="img-fluid" src="{{ asset(setting('logo')) }}" alt="Icon"
                             style="width: 50px">
                     </div>
-                    <h3 class="m-0 text-black text-left" style="text-align: left; line-height: 1;">Puskesmas <br>Loa Kulu</h3>
+                    <h3 class="m-0 text-black text-left" style="text-align: left; line-height: .9;"><span class="text-primary">Puskesmas</span> <br>Loa Kulu</h3>
                 </a>
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse"
                     data-bs-target="#navbarCollapse">
@@ -52,10 +52,10 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto">
-                        <a href="index.html" class="nav-item nav-link active">Beranda</a>
-                        <a href="about.html" class="nav-item nav-link">Tentang</a>
-                        <a href="about.html" class="nav-item nav-link">Galeri</a>
-                        <a href="about.html" class="nav-item nav-link">Lampiran</a>
+                        <a href="/" class="nav-item nav-link {{ Request::is('/') ? 'active' : '' }}">Beranda</a>
+                        <a href="/tentang" class="nav-item nav-link {{ Request::is('tentang') ? 'active' : '' }}">Tentang</a>
+                        <a href="/galeri" class="nav-item nav-link {{ Request::is('galeri') ? 'active' : '' }}">Galeri</a>
+                        <a href="/lampiran" class="nav-item nav-link {{ Request::is('lampiran') ? 'active' : '' }}">Lampiran</a>
                     </div>
                 </div>
             </nav>

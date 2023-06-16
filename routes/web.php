@@ -49,11 +49,13 @@ Route::group([
     Route::get('elderlies/index_data', ['as' => 'elderlies.index_data', 'uses' => 'ElderlyController@index_data']);
     Route::resource('elderlies', 'ElderlyController');
 
+    Route::get('elderly-records/export', ['as' => 'elderly-records.export_view', 'uses' => 'ElderlyRecordController@export_view']);
+    Route::post('elderly-records/export', ['as' => 'elderly-records.export', 'uses' => 'ElderlyRecordController@export']);
+    
     Route::get('elderly-records/index_data', ['as' => 'elderly-records.index_data', 'uses' => 'ElderlyRecordController@index_data']);
     Route::get('elderly-records/{id}', ['as' => 'elderly-records.create', 'uses' => 'ElderlyRecordController@create']);
 
-    Route::get('elderly-records/export_view', ['as' => 'elderly-records.export_view', 'uses' => 'ElderlyRecordController@export_view']);
-    Route::post('elderly-records/export', ['as' => 'elderly-records.export', 'uses' => 'ElderlyRecordController@export']);
+    
 
     Route::resource('elderly-records', 'ElderlyRecordController')->except(['create']);
 

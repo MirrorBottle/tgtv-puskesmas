@@ -21,12 +21,6 @@
                     <span class="nav-text">Pemeriksaan Lansia</span>
                 </a>
             </li>
-            <li class="{{ Request::is('elderly-records/export*') ? 'mm-active' : '' }}">
-                <a href="{{ route('elderly-records.export_view') }}" class="ai-icon" aria-expanded="false">
-                    <i class="flaticon-381-download"></i>
-                    <span class="nav-text">Laporan</span>
-                </a>
-            </li>
             {{-- <li>
                 <a class="has-arrow ai-icon mt-2" href="javascript:void(0);" aria-expanded="false">
                     <i class="flaticon-381-internet"></i>

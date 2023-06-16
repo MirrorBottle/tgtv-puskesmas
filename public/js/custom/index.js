@@ -21,12 +21,6 @@ $(() => {
     confirmButtonText: "Ya, Hapus",
     cancelButtonText: "Batal",
   };
-
-
-  $("#nav-control").on('click', function() {
-    $('#main-wrapper').toggleClass("menu-toggle");
-    $(".hamburger").toggleClass("is-active");
-  });
   
   if ($('#datatable').length) {
     $.extend(true, $.fn.dataTable.defaults, {

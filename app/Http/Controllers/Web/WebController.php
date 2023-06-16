@@ -76,11 +76,14 @@ class WebController extends Controller
         SEOTools::twitter()->setDescription(setting('about_description'));
         SEOTools::twitter()->setImage(asset(setting('about_image')));
         SEOTools::jsonLd()->addImage(asset(setting('about_image')));
-        dd('something');
+
+
+        return view('web.about');
+
     }
 
     public function gallery() {
-        SEOTools::setTitle(setting('app_name') . " - Tentang");
+        SEOTools::setTitle(setting('app_name') . " - Galeri");
         SEOTools::setDescription(setting('about_description'));
         SEOTools::opengraph()->setUrl(url('/'));
         SEOTools::opengraph()->addProperty('type', 'articles');
@@ -93,11 +96,13 @@ class WebController extends Controller
         SEOTools::twitter()->setDescription(setting('about_description'));
         SEOTools::twitter()->setImage(asset(setting('about_image')));
         SEOTools::jsonLd()->addImage(asset(setting('about_image')));
-        dd('something');
+        
+        return view('web.gallery');
+
     }
 
     public function attachment() {
-        SEOTools::setTitle(setting('app_name') . " - Tentang");
+        SEOTools::setTitle(setting('app_name') . " - Lampiran");
         SEOTools::setDescription(setting('about_description'));
         SEOTools::opengraph()->setUrl(url('/'));
         SEOTools::opengraph()->addProperty('type', 'articles');
@@ -110,10 +115,26 @@ class WebController extends Controller
         SEOTools::twitter()->setDescription(setting('about_description'));
         SEOTools::twitter()->setImage(asset(setting('about_image')));
         SEOTools::jsonLd()->addImage(asset(setting('about_image')));
-        dd('something');
+        
+        return view('web.attachment');
+
     }
 
     public function elderly(Request $request) {
+        SEOTools::setTitle(setting('app_name') . " - Hasil Pemeriksaan Lansia");
+        SEOTools::setDescription(setting('about_description'));
+        SEOTools::opengraph()->setUrl(url('/'));
+        SEOTools::opengraph()->addProperty('type', 'articles');
+        SEOTools::opengraph()->addImage(asset(setting('about_image')), [
+            'height' => 500,
+            'width' => 800
+        ]);
+        SEOTools::setCanonical(url('/'));
+        SEOTools::twitter()->setSite(setting('app_name'));
+        SEOTools::twitter()->setDescription(setting('about_description'));
+        SEOTools::twitter()->setImage(asset(setting('about_image')));
+        SEOTools::jsonLd()->addImage(asset(setting('about_image')));
+
         $data = null;
         $elderly = null;
         if($request->has('nik') && $request->has('month') && $request->has('year')) {
