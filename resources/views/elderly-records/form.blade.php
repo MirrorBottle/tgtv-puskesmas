@@ -12,34 +12,37 @@
             <div class="accordion__body--text">
               <table class="table table-bordered table-striped verticle-middle table-responsive-sm">
                 <tbody>
-                  <tr>
-                    <th scope="row" colspan="2">Nama</th>
-                    <th scope="row">NIK</th>
-                  </tr>
-                  <tr>
-                    <td  colspan="2">{{$elderly->name}}</td>
-                    <td>{{$elderly->nik}}</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Usia, Tgl. Lahir</th>
-                    <th scope="row">Jenis Kelamin</th>
-                    <th scope="row">Edukasi Terakhir</th>
-                  </tr>
-                  <tr>
-                    <td>{{ $elderly->age }} Thn, {{ $elderly->birth_date->translatedFormat('d F Y') }}</td>
-                    <td>{{ $elderly->gender }}</td>
-                    <td>{{ $elderly->last_education }}</td>
-                  </tr>
-                  <tr>
-                    <th scope="row" colspan="2">Alamat</th>
-                    <th scope="row">No. HP</th>
-                  </tr>
-                  <tr>
-                    <td  colspan="2">{{$elderly->address}}</td>
-                    <td>{{$elderly->phone_number}}</td>
-                  </tr>
+                    <tr>
+                        <th scope="row">Nama</th>
+                        <td>{{ $elderly->name }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">NIK</th>
+                        <td>{{ $elderly->nik }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Usia, Tgl. Lahir</th>
+                        <td>{{ $elderly->age }} Thn,
+                            {{ $elderly->birth_date->translatedFormat('d F Y') }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Jenis Kelamin</th>
+                        <td>{{ $elderly->gender }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Edukasi Terakhir</th>
+                        <td>{{ $elderly->last_education }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Alamat</th>
+                        <td colspan="2">{{ $elderly->address }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">No. HP</th>
+                        <td>{{ $elderly->phone_number }}</td>
+                    </tr>
                 </tbody>
-              </table>
+            </table>
             </div>
         </div>
     </div>

@@ -3,11 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Elderly;
+use App\Models\ElderlyRecord;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
+use App\Traits\ExcelTrait;
+use Carbon\Carbon;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
 
 class ElderlyRecordController extends Controller
 {
+
+    use ExcelTrait;
+
     public function __construct()
     {
         // module name
@@ -79,7 +87,7 @@ class ElderlyRecordController extends Controller
         ]);
         $module_name = $this->module_name;
         $module_data = $this->module_model::create($request->all());
-        return redirect()->route("$module_name.index")->with('status', "$this->module_singular baru berhasil dibuat!");
+        return redirect()->route("elderlies.index")->with('status', "$this->module_singular baru berhasil dibuat!");
     }
 
     /**
@@ -158,5 +166,110 @@ class ElderlyRecordController extends Controller
         $page_description = $this->page_description;
         $action = 'default';
         return view("$module_name.export", compact('page_title', 'page_description', 'action', 'module_data', 'module_name', 'module_singular'));
+    }
+
+    public function export(Request $request) {
+        $nik = $request->nik;
+        $month = $request->month;
+        $year = $request->year;
+
+        $query = ElderlyRecord::query();
+        
+        if($request->filled('nik')) {
+            $query->whereHas('elderly', function($q) use ($nik) {
+                $q->where('nik', $nik);
+            });
+        }
+    
+        if($month != "all") {
+            $query->whereMonth("recorded_at", $month);
+        }
+
+        if($year != "all") {
+            $query->whereYear("recorded_at", $year);
+        }
+
+        $data = $query->get();
+
+        $column_alphanumerics = range('A', 'AA');
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->setActiveSheetIndex(0);
+        $column = 1;
+        $number = 1;
+        // Set Header
+        foreach ($column_alphanumerics as $column_alphanumeric) {
+            $sheet
+                ->setCellValue("A$column", "No")
+                ->setCellValue("B$column", "Tanggal")
+                ->setCellValue("C$column", "NIK")
+                ->setCellValue("D$column", "Nama")
+                ->setCellValue("E$column", "Kemandirian")
+                ->setCellValue("F$column", "Umur")
+                ->setCellValue("G$column", "Kelompok Umur")
+                ->setCellValue("H$column", "Pendidikan Terakhir")
+                ->setCellValue("I$column", "IMT")
+                ->setCellValue("J$column", "TD")
+                ->setCellValue("K$column", "A (Indeks Barthel)")
+                ->setCellValue("L$column", "B (Romberg)")
+                ->setCellValue("M$column", "C (MMSe)")
+                ->setCellValue("N$column", "D (Faktor Resiko)")
+                ->setCellValue("O$column", "E (GDRS)")
+                ->setCellValue("P$column", "Mental Emosional")
+                ->setCellValue("Q$column", "Anemia")
+                ->setCellValue("R$column", "Diabetes Melitus")
+                ->setCellValue("S$column", "Gangguan Ginjal")
+                ->setCellValue("T$column", "Berat Badan")
+                ->setCellValue("U$column", "Gula Darah")
+                ->setCellValue("V$column", "Kolestrol")
+                ->setCellValue("W$column", "Penyakit Lain")
+                ->setCellValue("X$column", "Hasil Screening")
+                ->setCellValue("Y$column", "Penanganan")
+                ->setCellValue("Z$column", "Rencana Tindakan")
+                ->setCellValue("AA$column", "Keterangan")
+                ->getColumnDimension($column_alphanumeric)
+                ->setAutoSize(true);
+            $this->setExcelHeaderStyle($sheet, "A$column:AA$column");
+        }
+        $column++;
+        foreach ($data as $record) {
+            $sheet
+                ->setCellValue("A$column", $number)
+                ->setCellValue("B$column", $record->recorded_at->format("d-m-Y"))
+                ->setCellValue("C$column", $record->elderly->nik)
+                ->setCellValue("D$column", $record->elderly->name)
+                ->setCellValue("E$column", $record->independence_group)
+                ->setCellValue("F$column", Carbon::parse($record->elderly->birth_date)->diff($record->recorded_at)->y . "Th")
+                ->setCellValue("G$column", $record->age_group)
+                ->setCellValue("H$column", $record->elderly->last_education)
+                ->setCellValue("I$column", "$record->imt_res - $record->imt_format")
+                ->setCellValue("J$column", "$record->blood_pressure_res - $record->blood_pressure_format")
+                ->setCellValue("K$column", "$record->barthel_indeks_res - $record->barthel_indeks_format")
+                ->setCellValue("L$column", $record->romberg_res)
+                ->setCellValue("M$column", "$record->mmse_res - $record->mmse_format")
+                ->setCellValue("N$column", "$record->factor_risk_res - $record->factor_risk_format")
+                ->setCellValue("O$column", "$record->depression_res - $record->depression_format")
+                ->setCellValue("P$column", $record->is_mental_emotional ? "Ya" : "Tidak")
+                ->setCellValue("Q$column", $record->is_anemia ? "Ya" : "Tidak")
+                ->setCellValue("R$column", $record->has_diabetes ? "Ya" : "Tidak")
+                ->setCellValue("S$column", $record->has_kedney_failur ? "Ya" : "Tidak")
+                ->setCellValue("T$column", "$record->weight - $record->weight_category")
+                ->setCellValue("U$column", "$record->blood_sugar_res - $record->blood_sugar_format")
+                ->setCellValue("V$column", "$record->colestrol_res - $record->colestrol_format")
+                ->setCellValue("W$column", $record->other_diseases)
+                ->setCellValue("X$column", $record->screening_format)
+                ->setCellValue("Y$column", $record->treatment)
+                ->setCellValue("Z$column", $record->follow_up)
+                ->setCellValue("AA$column", $record->note)
+                ->getColumnDimension($column_alphanumeric)
+                ->setAutoSize(true);
+            $this->setExcelStyle($sheet, "A$column:AA$column");
+            $number++;
+            $column++;
+        }
+        $file_name = "[LAPORAN PEMERIKSAAN LANSIA] " . date('d-m-Y');
+        ob_end_clean();
+        header('Content-Disposition: attachment;filename="' . $file_name . '.xlsx"');
+        $writer = new Xlsx($spreadsheet);
+        $writer->save('php://output');
     }
 }
