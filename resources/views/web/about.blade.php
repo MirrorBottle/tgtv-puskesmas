@@ -18,6 +18,7 @@
 <div class="container-fluid bg-white m-4 p-4">
     <div>
         {!! setting('about_page') !!}
+        
     </div>
 </div>
 <!-- Header End -->

@@ -48,8 +48,8 @@ class AppController extends Controller
         for($day = 0; $day < $today->daysInMonth; $day++) {
             $visitor = $visitors->filter(function($visitor) use ($day, $curr_month_year) {
                 return Carbon::parse($visitor->date)->eq(Carbon::parse("$curr_month_year-$day"));
-            })->first();
-            $tracks[] = $visitor ? $visitor->views : 0;
+            });
+            $tracks[] = $visitor->count();
         }
 
         $elderly_records = ElderlyRecord::all()->count();

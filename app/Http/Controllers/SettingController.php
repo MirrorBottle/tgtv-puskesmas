@@ -32,13 +32,26 @@ class SettingController extends Controller
      */
     public function index()
     {
-      $module_name = $this->module_name;
-      $module_singular = $this->module_singular;
-      $module_data = $this->module_model::paginate();
-      $page_title = $this->page_title;
-      $page_description = $this->page_description;
-      $action = 'default';
-      return view("$module_name.index", compact('page_title', 'page_description', 'action', 'module_data', 'module_name', 'module_singular'));
+        $module_name = $this->module_name;
+        $module_singular = $this->module_singular;
+        $module_data = $this->module_model::paginate();
+        $page_title = $this->page_title;
+        $page_description = $this->page_description;
+        $action = 'default';
+        return view("$module_name.index", compact('page_title', 'page_description', 'action', 'module_data', 'module_name', 'module_singular'));
+    }
+
+    public function section($sectionType)
+    {
+        $module_name = $this->module_name;
+        $module_singular = $this->module_singular;
+        $module_data = $this->module_model::paginate();
+        $page_title = "Homepage";
+        $page_description = $this->page_description;
+        $action = 'default';
+
+        $section = config("setting_fields.$sectionType");
+        return view("$module_name.section", compact('page_title', 'page_description', 'action', 'module_data', 'module_name', 'module_singular', 'section'));
     }
 
     public function store(Request $request)

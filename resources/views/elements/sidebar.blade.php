@@ -21,19 +21,6 @@
                     <span class="nav-text">Pemeriksaan Lansia</span>
                 </a>
             </li>
-            {{-- <li>
-                <a class="has-arrow ai-icon mt-2" href="javascript:void(0);" aria-expanded="false">
-                    <i class="flaticon-381-internet"></i>
-                    <span class="nav-text">Website Master</span>
-                </a>
-                <ul aria-expanded="false">
-                    <li class="{{ Request::is('galleries*') ? 'mm-active' : '' }}"><a href="{{ route('galleries.index') }}">Galeri</a></li>
-                    <li class="{{ Request::is('experiences*') ? 'mm-active' : '' }}"><a href="{{ route('experiences.index') }}">Experience</a></li>
-                    <li class="{{ Request::is('inboxes*') ? 'mm-active' : '' }}"><a href="{{ route('inboxes.index') }}">Inbox</a></li>
-                    <li class="{{ Request::is('missions*') ? 'mm-active' : '' }}"><a href="{{ route('missions.index') }}">Visi Misi</a></li>
-                    <li class="{{ Request::is('setting*') ? 'mm-active' : '' }}"><a href="{{ route('setting.index') }}">Setting</a></li>
-                </ul>
-            </li> --}}
             @if (auth()->user()->isRoleAdmin)
                 <li>
                     <a class="has-arrow ai-icon mt-2" href="javascript:void(0);" aria-expanded="false">
@@ -41,10 +28,12 @@
                         <span class="nav-text">Web Master</span>
                     </a>
                     <ul aria-expanded="false">
-                        <li class="{{ Request::is('users*') ? 'mm-active' : '' }}"><a href="{{ route('users.index') }}">Homepage</a></li>
-                        <li class="{{ Request::is('setting*') ? 'mm-active' : '' }}"><a href="{{ route('setting.index') }}">Tentang</a></li>
-                        <li class="{{ Request::is('setting*') ? 'mm-active' : '' }}"><a href="{{ route('setting.index') }}">Galeri</a></li>
-                        <li class="{{ Request::is('setting*') ? 'mm-active' : '' }}"><a href="{{ route('setting.index') }}">Lampiran</a></li>
+                        <li class="{{ Request::is('setting/homepage') ? 'mm-active' : '' }}"><a href="{{ route('setting.section', 'homepage') }}">Homepage</a></li>
+                        <li class="{{ Request::is('setting/about') ? 'mm-active' : '' }}"><a href="{{ route('setting.section', 'about') }}">Tentang</a></li>
+                        <li class="{{ Request::is('galleries/gallery*') ? 'mm-active' : '' }}"><a href="{{ route('galleries.index', 'gallery') }}">Galeri</a></li>
+                        <li class="{{ Request::is('galleries/attachment*') ? 'mm-active' : '' }}"><a href="{{ route('galleries.index', 'attachment') }}">Lampiran</a></li>
+                        <li class="{{ Request::is('galleries/service*') ? 'mm-active' : '' }}"><a href="{{ route('galleries.index', 'service') }}">Layanan</a></li>
+                        <li class="{{ Request::is('galleries/banner*') ? 'mm-active' : '' }}"><a href="{{ route('galleries.index', 'banner') }}">Banner</a></li>
                     </ul>
                 </li>
                 <li>

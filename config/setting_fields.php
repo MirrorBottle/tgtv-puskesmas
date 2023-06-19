@@ -94,7 +94,7 @@ return [
                 'label' => 'Tulisan Banner Beranda', // you know what label it is
                 'rules' => 'required|nullable', // validation rule of laravel
                 'class' => '', // any class for input
-                'value' => 'Kami menyediakan Catering dan Rental.', // default value if you want
+                'value' => 'Terwujudnya Masyarakat Kecamatan Loa Kulu Mandiri Untuk <span class="text-primary">Hidup Sehat.</span>', // default value if you want
             ],
             [
                 'type'  => 'file', // input fields type
@@ -103,7 +103,7 @@ return [
                 'label' => 'Gambar Jam Pelayanan', // you know what label it is
                 'rules' => 'required|nullable', // validation rule of laravel
                 'class' => '', // any class for input
-                'value' => 'storage/files/foto-7.jpg', // default value if you want
+                'value' => '/storage/files/foto-7.jpg', // default value if you want
             ],
             [
                 'type'  => 'editor', // input fields type
@@ -112,7 +112,11 @@ return [
                 'label' => 'Jam Pelayanan', // you know what label it is
                 'rules' => 'required|nullable', // validation rule of laravel
                 'class' => '', // any class for input
-                'value' => 'Kami menyediakan Catering dan Rental.', // default value if you want
+                'value' => '<h1 class="mb-4">Jam Pelayanan Rawat Jalan</h1>
+                <p class="mb-4">Berikut jam pelayanan rawat jalan di Puskesmas Loa Kulu</p>
+                <p><i class="fa fa-check text-primary me-3"></i>Senin - Kamis: 07.45 - 13.30 WITA</p>
+                <p><i class="fa fa-check text-primary me-3"></i>Jumat: 07.45 - 11.30 WITA</p>
+                <p><i class="fa fa-check text-primary me-3"></i>Sabtu: 07.45 - 12.00 WITA</p>', // default value if you want
             ],
             [
                 'type'  => 'file', // input fields type
@@ -121,7 +125,7 @@ return [
                 'label' => 'Gambar Hubungi Kami', // you know what label it is
                 'rules' => 'required|nullable', // validation rule of laravel
                 'class' => '', // any class for input
-                'value' => 'storage/files/foto-6.jpg', // default value if you want
+                'value' => '/storage/files/foto-6.jpg', // default value if you want
             ],
             [
                 'type'  => 'editor', // input fields type
@@ -130,7 +134,8 @@ return [
                 'label' => 'Tulisan Hubungi Kami', // you know what label it is
                 'rules' => 'required|nullable', // validation rule of laravel
                 'class' => '', // any class for input
-                'value' => 'Kami menyediakan Catering dan Rental.', // default value if you want
+                'value' => '<h1 class="mb-3">Hubungi Kami</h1>
+                <p>Anda dapat menghubungi kami melalui kontak WA berikut</p>', // default value if you want
             ],
         ],
     ],
@@ -147,7 +152,11 @@ return [
                 'label' => 'Judul Tentang', // you know what label it is
                 'rules' => 'required|nullable', // validation rule of laravel
                 'class' => '', // any class for input
-                'value' => 'Kami menyediakan Catering dan Rental.', // default value if you want
+                'value' => '<p>Puskesmas Loa Kulu merupakan salah satu Puskesmas yang ada di wilayah Tengah Kabupaten Kutai Kartanegara. Puskesmas Loa Kulu terletak di Kecamatan Loa Kulu. Kecamatan Loa Kulu yang beribukota kecamatan di Loh Sumber dan berjarak ± 12 KM dari ibu kota Kabupaten Kutai Kartanegara Tenggarong.</p><p>Puskesmas Loa Kulu difungsikan sejak tahun 1973  merupakan Puskesmas Perawatan.</p><p>Batas wilayah kerja Puskesmas Loa Kulu adalah :</p>                
+                <p>o   Sebelah utara  berbatasan dengan Kec Kota Bangun dan Kecamatan Tenggarong</p>
+                <p>o   Sebelah timur berbatasan dengan Kecamatan Loa Janan</p>
+                <p>o   Sebelah selatan berbatasan dengan Kecamatan Muara Muntai dan Kab Kutai Barat</p>
+                <p>o   Sebelah barat berbatasan dengan Kabupaten Panajam Paser Utara</p>', // default value if you want
             ],
         ],
     ],

@@ -45,7 +45,9 @@ class WebController extends Controller
         SEOTools::twitter()->setImage(asset(setting('about_image')));
         SEOTools::jsonLd()->addImage(asset(setting('about_image')));
 
-        $galleries = Gallery::active();
+        $banners = Gallery::type('banner');
+        $services = Gallery::type('service');
+
 
         $agent = new Agent();
         $ip = request()->ip();
@@ -59,7 +61,7 @@ class WebController extends Controller
             ]);
         }
         
-        return view('web.index', compact('galleries'));
+        return view('web.index', compact('banners', 'services'));
     }
 
     public function about() {
@@ -97,7 +99,9 @@ class WebController extends Controller
         SEOTools::twitter()->setImage(asset(setting('about_image')));
         SEOTools::jsonLd()->addImage(asset(setting('about_image')));
         
-        return view('web.gallery');
+        $galleries = Gallery::type('gallery');
+
+        return view('web.gallery', compact('galleries'));
 
     }
 
@@ -116,7 +120,9 @@ class WebController extends Controller
         SEOTools::twitter()->setImage(asset(setting('about_image')));
         SEOTools::jsonLd()->addImage(asset(setting('about_image')));
         
-        return view('web.attachment');
+        $attachments = Gallery::type('attachment');
+
+        return view('web.attachment', compact('attachments'));
 
     }
 

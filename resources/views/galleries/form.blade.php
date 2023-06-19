@@ -26,7 +26,7 @@
         $field_name = 'image';
         $field_lable = "Gambar";
         $field_placeholder = $field_lable;
-        $required = "required";
+        $required = request()->type == "attachment" ? "" : "required";
         ?>
         {!! Form::label("$field_name", "$field_lable") !!} {!! fielf_required($required) !!}
         <div class="input-group mb-3">
@@ -47,6 +47,18 @@
         ?>
         {{ html()->label($field_label, $field_name) }} {!! fielf_required($required) !!}
         {{ html()->textarea($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"])->addClass($errors->has($field_name) ? 'is-invalid' : '') }}
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="form-group">
+        <?php
+        $field_name = 'link';
+        $field_label = 'Link';
+        $field_placeholder = $field_label;
+        $required = "";
+        ?>
+        {{ html()->label($field_label, $field_name) }} {!! fielf_required($required) !!}
+        {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"])->addClass($errors->has($field_name) ? 'is-invalid' : '') }}
       </div>
     </div>
   </div>

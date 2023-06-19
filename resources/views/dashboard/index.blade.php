@@ -40,20 +40,22 @@
 			</div>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-12">
-			<div class="row">
-				<!-- <div class="col-xl-12 col-xxl-12 col-lg-12 col-md-12"> -->
-				<div class="col-xl-12 col-xxl-12 col-lg-12 col-md-12">
-					<div class="card">
-						<div class="card-header border-0 pb-2">
-							<h4 class="card-title">Pengujung Bulan {{\Carbon\Carbon::now()->format('F')}}</h4>
-						</div>
-						<div class="card-body pt-2">
-							<h3 class="text-primary font-w600">{{array_sum($tracks)}} Visits</h3>
-							<div class="row mx-0 align-items-center">
-								<div class="col-12  px-0">
-									<div id="chartStrock"></div>
+	@if (auth()->user()->isRoleAdmin)
+		<div class="row">
+			<div class="col-12">
+				<div class="row">
+					<!-- <div class="col-xl-12 col-xxl-12 col-lg-12 col-md-12"> -->
+					<div class="col-xl-12 col-xxl-12 col-lg-12 col-md-12">
+						<div class="card">
+							<div class="card-header border-0 pb-2">
+								<h4 class="card-title">Pengujung Bulan {{\Carbon\Carbon::now()->format('F')}}</h4>
+							</div>
+							<div class="card-body pt-2">
+								<h3 class="text-primary font-w600">{{array_sum($tracks)}} Visits</h3>
+								<div class="row mx-0 align-items-center">
+									<div class="col-12  px-0">
+										<div id="chartStrock"></div>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -61,7 +63,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	@endif
 </div>
 
 @push('addition-scripts')

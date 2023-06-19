@@ -12,7 +12,7 @@
                 <h4 class="card-title">{{$page_title}}</h4>
             </div>
             <div class="card-body">
-              {{ html()->form('POST', route("$module_name.store"))->class('form')->open() }}
+              {{ html()->form('POST', route("$module_name.store", request()->type))->class('form')->open() }}
               <div class="row">
                   @include("$module_name.form")
                   <div class="col-12 mt-2">

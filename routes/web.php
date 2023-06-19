@@ -43,8 +43,15 @@ Route::group([
     Route::get('users/index_data', ['as' => 'users.index_data', 'uses' => 'UserController@index_data']);
     Route::resource('users', 'UserController');
     
-    Route::get('galleries/index_data', ['as' => 'galleries.index_data', 'uses' => 'GalleryController@index_data']);
-    Route::resource('galleries', 'GalleryController');
+    Route::get('galleries/index_data/{type}', ['as' => 'galleries.index_data', 'uses' => 'GalleryController@index_data']);
+    Route::get('galleries/create/{type}', ['as' => 'galleries.create', 'uses' => 'GalleryController@create']);
+    Route::get('galleries/edit/{id}', ['as' => 'galleries.edit', 'uses' => 'GalleryController@edit']);
+    Route::get('galleries/detail/{id}', ['as' => 'galleries.show', 'uses' => 'GalleryController@show']);
+    Route::get('galleries/{type}', ['as' => 'galleries.index', 'uses' => 'GalleryController@index']);
+    Route::post('galleries/{type}', ['as' => 'galleries.store', 'uses' => 'GalleryController@store']);
+    Route::put('galleries/{id}', ['as' => 'galleries.update', 'uses' => 'GalleryController@update']);
+    Route::delete('galleries/{id}', ['as' => 'galleries.destroy', 'uses' => 'GalleryController@destroy']);
+
 
     Route::get('elderlies/index_data', ['as' => 'elderlies.index_data', 'uses' => 'ElderlyController@index_data']);
     Route::get('elderlies/death/{id}', ['as' => 'elderlies.death', 'uses' => 'ElderlyController@death']);
@@ -61,7 +68,7 @@ Route::group([
 
     Route::resource('elderly-records', 'ElderlyRecordController')->except(['create']);
 
-
+    Route::get('setting/{section}', ['as' => 'setting.section', 'uses' => 'SettingController@section']);
     Route::resource('setting', 'SettingController')->only(['index', 'store']);
 });
 

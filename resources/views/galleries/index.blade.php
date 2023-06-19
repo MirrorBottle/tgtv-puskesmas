@@ -10,7 +10,7 @@
         <div class="card">
             <div class="card-header d-flex align-items-center justify-content-between">
                 <h4 class="card-title">Daftar {{$module_singular}}</h4>
-                <a href="{{route("$module_name.create")}}" class="btn btn-primary btn-sm">
+                <a href="{{route("$module_name.create", request()->type)}}" class="btn btn-primary btn-sm">
                     <i class="fas fa-plus"></i>
                     Tambah {{$module_singular}}
                 </a>
@@ -42,7 +42,7 @@
             serverSide: true,
             autoWidth: true,
             responsive: true,
-            ajax: '{{ route("$module_name.index_data") }}',
+            ajax: '{{ route("$module_name.index_data", request()->type) }}',
             columns: [
                 {
                     data: 'id',
@@ -55,9 +55,7 @@
                     data: 'image',
                     name: 'image',
                     render: function(data, type, row, meta) {
-                        return `
-                            <img src="${row.image}" alt="${row.title}" class="img-fluid">
-                        `
+                        return row.imageUrl == "-" ? "-" : `<img src="${row.image}" alt="${row.title}" class="img-fluid" style="max-height: 200px">`
                     }
                 },
                 {

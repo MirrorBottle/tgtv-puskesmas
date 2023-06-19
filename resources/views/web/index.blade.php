@@ -3,13 +3,15 @@
 <div class="container-fluid header bg-white p-0">
     <div class="row g-0 align-items-center flex-column-reverse flex-md-row">
         <div class="col-md-6 p-5 mt-lg-5">
-            <h1 class="display-5 animated fadeIn mb-4">Terwujudnya Masyarakat Kecamatan Loa Kulu Mandiri Untuk <span class="text-primary">Hidup Sehat.</span></h1>
+            <h1 class="display-5 animated fadeIn mb-4">{!! setting('homepage_banner') !!}</h1>
         </div>
         <div class="col-md-6 animated fadeIn">
             <div class="owl-carousel header-carousel">
-                <div class="owl-carousel-item">
-                    <img class="img-fluid" src="{{ asset("storage/files/foto-3.jpg") }}" alt="">
-                </div>
+                @foreach ($banners as $banner)
+                    <div class="owl-carousel-item">
+                        <img class="img-fluid" src="{{ asset($banner->image) }}" alt="">
+                    </div>  
+                @endforeach
             </div>
         </div>
     </div>
@@ -62,43 +64,28 @@
 <!-- Search End -->
 
 
-<!-- Category Start -->
 <div class="container-xxl py-5">
     <div class="container">
         <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
             <h1 class="mb-3">Program & Layanan</h1>
         </div>
-        @php
-            $services = [
-                ['Poli Umum', 'fa-house-medical'],
-                ['Poli Lansia', 'fa-person-cane'],
-                ['Poli Gigi', 'fa-face-grimace'],
-                ['Poli KIA', 'fa-person-breastfeeding'],
-                ['Poli KB', 'fa-children'],
-                ['Poli Imunisasi', 'fa-shield-heart'],
-                ['Poli Anak dan gizi', 'fa-apple-whole'],
-                ['PKPR dan Konsultasi', 'fa-hospital-user'],
-                ['Apotik dan Obat', 'fa-prescription-bottle-medical'],
-                ['Lab dan Klinik DOT', 'fa-flask-vial'],
-                ['Instalasi Gawat Darurat', 'fa-truck-medical'],
-            ];
-        @endphp
         <div class="row g-4">
+
             @foreach ($services as $service)
-                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="cat-item d-block bg-light text-center rounded p-3">
-                        <div class="rounded p-4">
-                            <div class="icon mb-3"><i class="fa-solid {{ $service[1] }} fa-2x"></i></div>
-                            <h6>{{ $service[0] }}</h6>
+                <div class="col-lg-3 col-12 wow fadeInUp" data-wow-delay="0.1s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp;">
+                    <div class="property-item rounded overflow-hidden">
+                        <div class="position-relative overflow-hidden">
+                            <img class="img-fluid" src="{{ asset($service->image) }}" alt="">
+                        </div>
+                        <div class="p-4 pb-0">
+                            <p class="d-block h5 mb-2 text-center text-primary" href="">{{ $service->title }}</p>
                         </div>
                     </div>
                 </div>
-                
             @endforeach
         </div>
     </div>
 </div>
-<!-- Category End -->
 
 
 <!-- About Start -->
@@ -107,15 +94,11 @@
         <div class="row g-5 align-items-center">
             <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
                 <div class="about-img position-relative overflow-hidden p-5 pe-0">
-                    <img class="img-fluid w-100" src="{{ asset("storage/files/foto-7.jpg") }}">
+                    <img class="img-fluid w-100" src="{{ asset(setting("homepage_hours_file")) }}">
                 </div>
             </div>
             <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-                <h1 class="mb-4">Jam Pelayanan Rawat Jalan</h1>
-                <p class="mb-4">Berikut jam pelayanan rawat jalan di Puskesmas Loa Kulu</p>
-                <p><i class="fa fa-check text-primary me-3"></i>Senin - Kamis: 07.45 - 13.30 WITA</p>
-                <p><i class="fa fa-check text-primary me-3"></i>Jumat: 07.45 - 11.30 WITA</p>
-                <p><i class="fa fa-check text-primary me-3"></i>Sabtu: 07.45 - 12.00 WITA</p>
+                {!! setting("homepage_hours") !!}
             </div>
         </div>
     </div>
@@ -130,12 +113,11 @@
             <div class="bg-white rounded p-4" style="border: 1px dashed rgba(0, 185, 142, .3)">
                 <div class="row g-5 align-items-center">
                     <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
-                        <img class="img-fluid rounded w-100" src="{{ asset("storage/files/foto-6.jpg") }}" alt="">
+                        <img class="img-fluid rounded w-100" src="{{ asset(setting("homepage_contact_file")) }}" alt="">
                     </div>
                     <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
                         <div class="mb-4">
-                            <h1 class="mb-3">Hubungi Kami</h1>
-                            <p>Anda dapat menghubungi kami melalui kontak WA berikut</p>
+                            {!! setting("homepage_contact") !!}
                         </div>
                         <a href="" class="btn btn-primary py-3 px-4 me-2"><i class="fa-brands fa-whatsapp me-2"></i></i>Hubungi Kami</a>
                     </div>

@@ -14,32 +14,46 @@ class GalleryController extends Controller
         // module model name, path
         $this->module_model = "App\Models\Gallery";
         // page title
-        $this->page_title = 'Galeri';
+        $this->page_title = [
+            "gallery" => "Galeri",
+            "service" => "Layanan",
+            "banner" => "Banner",
+            "attachment" => "Lampiran"
+        ];
         // page description
         $this->page_description = 'Galeri List';
         // module singular name
-        $this->module_singular = 'Galeri';
+        $this->module_singular = [
+            "gallery" => "Galeri",
+            "service" => "Layanan",
+            "banner" => "Banner",
+            "attachment" => "Lampiran"
+
+        ];
     }
-    public function index()
+    public function index($type)
     {
         $module_name = $this->module_name;
-        $module_singular = $this->module_singular;
-        $module_data = $this->module_model::paginate();
-        $page_title = $this->page_title;
+        $module_singular = $this->module_singular[$type];
+        $page_title = $this->page_title[$type];
+        $module_data = $this->module_model::where('type', $type)->paginate();
         $page_description = $this->page_description;
         $action = 'default';
         return view("$module_name.index", compact('page_title', 'page_description', 'action', 'module_data', 'module_name', 'module_singular'));
     }
 
-    public function index_data() {
-        $data = $this->module_model::select('*');
+    public function index_data($type) {
+        $data = $this->module_model::select('*')->where('type', $type);
         return DataTables::of($data)
             ->editColumn('image', function($data) {
                 return asset($data->image);
             })
+            ->addColumn('imageUrl', function($data) {
+                return $data->image;
+            })
             ->addColumn('action', function ($data) {
                 $module_name = $this->module_name;
-                return view('components.action_column', compact('module_name', 'data'));
+                return view("$module_name.action_column", compact('module_name', 'data'));
             })
             ->toJson();
     }
@@ -49,10 +63,11 @@ class GalleryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($type)
     {
         $module_name = $this->module_name;
-        $page_title = "Tambah $this->page_title";
+        $page_title = $this->page_title[$type];
+        $page_title = "Tambah $page_title";
         $page_description = $this->page_description;
         $action = 'default';
         return view("$module_name.create", compact('module_name', 'page_title', 'page_description', 'action'));
@@ -71,7 +86,8 @@ class GalleryController extends Controller
         ]);
         $module_name = $this->module_name;
         $module_data = $this->module_model::create($request->all());
-        return redirect()->route("$module_name.index")->with('status', "$this->module_singular baru berhasil dibuat!");
+        $module_singular = $this->module_singular[$request->type];
+        return redirect()->route("$module_name.index", $request->type)->with('status', "$module_singular baru berhasil dibuat!");
     }
 
     /**
@@ -83,8 +99,8 @@ class GalleryController extends Controller
     public function show($id)
     {
         $module_name = $this->module_name;
-        $module_singular = $this->module_singular;
         $module_data = $this->module_model::findOrFail($id);
+        $module_singular = $this->module_singular[$module_data->type];
         $page_title = "Detail $this->page_title";
         $page_description = $this->page_description;
         $action = 'default';
@@ -101,7 +117,8 @@ class GalleryController extends Controller
     {
         $module_name = $this->module_name;
         $module_data = $this->module_model::findOrFail($id);
-        $page_title = "Ubah $this->page_title";
+        $page_title = $this->page_title[$module_data->type];
+        $page_title = "Ubah $page_title";
         $page_description = $this->page_description;
         $action = 'default_index';
         return view("$module_name.edit", compact('module_name', 'page_title', 'page_description', 'action', 'module_data'));
