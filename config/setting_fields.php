@@ -16,15 +16,6 @@ return [
                 'value' => 'Puskesmas Loa Kulu', // default value if you want
             ],
             [
-                'type'  => 'text', // input fields type
-                'data'  => 'string', // data type, string, int, boolean
-                'name'  => 'footer_text', // unique name for field
-                'label' => 'Footer Text', // you know what label it is
-                'rules' => 'required|min:2', // validation rule of laravel
-                'class' => '', // any class for input
-                'value' => 'Puskesmas Loa Kulu', // default value if you want
-            ],
-            [
                 'type'  => 'email', // input fields type
                 'data'  => 'string', // data type, string, int, boolean
                 'name'  => 'email', // unique name for field
@@ -37,7 +28,7 @@ return [
                 'type'  => 'text', // input fields type
                 'data'  => 'string', // data type, string, int, boolean
                 'name'  => 'phone_number', // unique name for field
-                'label' => 'Phone Number', // you know what label it is
+                'label' => 'No. HP', // you know what label it is
                 'rules' => 'required', // validation rule of laravel
                 'class' => '', // any class for input
                 'value' => '085250606606', // default value if you want
@@ -68,15 +59,6 @@ return [
                 'rules' => 'required', // validation rule of laravel
                 'class' => '', // any class for input
                 'value' => 'storage/files/logo.png', // default value if you want
-            ],
-            [
-                'type'  => 'file', // input fields type
-                'data'  => 'string', // data type, string, int, boolean
-                'name'  => 'favicon', // unique name for field
-                'label' => 'Favicon', // you know what label it is
-                'rules' => 'required', // validation rule of laravel
-                'class' => '', // any class for input
-                'value' => 'storage/files/logo/favicon.png', // default value if you want
             ],
 
         ],

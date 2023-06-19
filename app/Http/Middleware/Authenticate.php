@@ -16,6 +16,7 @@ class Authenticate extends Middleware
     {
         if (!Auth::guard('api')->check()) {
             abort(response()->json('Unauthorized', 403));
+            return route('login');
         }
     
         if (! $request->expectsJson()) {

@@ -118,7 +118,7 @@ class ElderlyRecordController extends Controller
         $module_name = $this->module_name;
         $module_data = $this->module_model::findOrFail($id);
         $page_title = "Ubah $this->page_title";
-        $elderly = Elderly::find($id);
+        $elderly = Elderly::find($module_data->elderly_id);
         $page_description = $this->page_description;
         $action = 'default_index';
         return view("$module_name.edit", compact('module_name', 'page_title', 'page_description', 'action', 'module_data', 'elderly'));

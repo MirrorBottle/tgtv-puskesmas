@@ -17,7 +17,7 @@
 
                 @if(count(config('setting_fields', [])) )
                     @foreach(config('setting_fields') as $section => $fields)
-                    @if (in_array($section, ["app", "social", "about", "experience", "contact"]))
+                    @if (in_array($section, ["app", "social","experience", "contact"]))
                         <div class="card">
                             <div class="card-header">
                                 <i class="{{ Arr::get($fields, 'icon', 'glyphicon glyphicon-flash') }}"></i>

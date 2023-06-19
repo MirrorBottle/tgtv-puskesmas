@@ -33,7 +33,7 @@ class ElderlyController extends Controller
 
     public function index_data() {
         $module_name = $this->module_name;
-        $data = $this->module_model::select('*');
+        $data = $this->module_model::select('*')->orderBy("id", "DESC");
         return DataTables::of($data)
             ->addColumn('age', function($data) {
                 return $data->age . " Thn";

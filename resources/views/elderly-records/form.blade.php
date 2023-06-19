@@ -48,7 +48,6 @@
     </div>
   </div>
 </div>
-
 <div class="col-12">
   <input name="elderly_id" type="hidden" value="{{$elderly->id}}">
 
@@ -70,7 +69,7 @@
         $required = "required";
         ?>
         {{ html()->label($field_label, $field_name) }} {!! fielf_required($required) !!}
-        {{ html()->date($field_name)->value(isset($module_data) ? ($module_data->recorded_at ? $module_data->recorded_at : date('Y-m-d')): date('Y-m-d'))->placeholder($field_placeholder)->class('form-control')->attributes(["$required"])->addClass($errors->has($field_name) ? 'is-invalid' : '') }}
+        {{ html()->date($field_name)->value(isset($module_data) ? ($module_data->recorded_at ? $module_data->recorded_at->format("Y-m-d") : date('Y-m-d')): date('Y-m-d'))->placeholder($field_placeholder)->class('form-control')->attributes(["$required"])->addClass($errors->has($field_name) ? 'is-invalid' : '') }}
       </div>
     </div>
     <div class="col-12">
@@ -130,7 +129,7 @@
     <div class="col-12 pb-4 mb-4">
       <div class="row">
         @foreach ($inputs as $input)
-          <div class="col-6">
+          <div class="col-12">
             <?php
             $field_name = $input[0];
             $field_label = $input[1];
@@ -179,14 +178,14 @@
             {{ html()->label($field_label, $field_name) }} {!! fielf_required($required) !!}
           </div>
           @if ($input[1] != null)
-            <div class="col-6">
+            <div class="col-12">
               <div class="form-group">
                 {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"])->addClass($errors->has($field_name) ? 'is-invalid' : '') }}
               </div>
             </div>
           @endif
           @if ($input[2] != null)
-            <div class="col-6">
+            <div class="col-12">
               <?php
                 $field_name = $input[2];
                 $required = "required";
