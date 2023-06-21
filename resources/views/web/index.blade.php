@@ -153,7 +153,7 @@
                         <div class="mb-4">
                             {!! setting('homepage_contact') !!}
                         </div>
-                        <a href="" class="btn btn-primary py-3 px-4 me-2"><i
+                        <a href="https://api.whatsapp.com/send?phone={{ setting("phone_number") }}/085247032442&text=Saya ingin bertanya tentang" target="_blank" class="btn btn-primary py-3 px-4 me-2"><i
                                 class="fa-brands fa-whatsapp me-2"></i></i>Hubungi Kami</a>
                     </div>
                 </div>
@@ -169,29 +169,42 @@
             <h1 class="mb-3">Sosial Media</h1>
         </div>
         <div class="row g-4" id="social-media-container">
-            <div class="col-lg-6 col-sm-12 wow fadeInUp" data-wow-delay="0.1s"
+            <div class="col-lg-4 col-sm-12 wow fadeInUp" data-wow-delay="0.1s"
                 style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp;">
                 <a class="cat-item d-block bg-light text-center rounded p-3"
-                    href="https://web.facebook.com/puskesmas.loakulu" target="_blank">
+                    href="{{ setting("facebook_url") }}" target="_blank">
                     <div class="rounded p-4">
                         <div class="icon mb-3">
                             <i class="fab fa-facebook fa-4x"></i>
                         </div>
                         <h6>Facebook</h6>
-                        <span>Puskesmas Loa Kulu</span>
+                        <span>{{ setting("facebook_name") }}</span>
                     </div>
                 </a>
             </div>
-            <div class="col-lg-6 col-sm-12 wow fadeInUp" data-wow-delay="0.1s"
+            <div class="col-lg-4 col-sm-12 wow fadeInUp" data-wow-delay="0.1s"
                 style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp;">
                 <a class="cat-item d-block bg-light text-center rounded p-3"
-                    href="https://www.instagram.com/puskesmas_loa_kulu/" target="_blank">
+                    href="{{ setting("instagram_name") }}" target="_blank">
                     <div class="rounded p-4">
                         <div class="icon mb-3">
                             <i class="fab fa-instagram fa-4x"></i>
                         </div>
                         <h6>Instagram</h6>
-                        <span>puskesmas_loa_kulu</span>
+                        <span>{{ setting("instagram_name") }}</span>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-4 col-sm-12 wow fadeInUp" data-wow-delay="0.1s"
+                style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp;">
+                <a class="cat-item d-block bg-light text-center rounded p-3"
+                    href="{{ setting("youtube_name") }}" target="_blank">
+                    <div class="rounded p-4">
+                        <div class="icon mb-3">
+                            <i class="fab fa-youtube fa-4x"></i>
+                        </div>
+                        <h6>Youtube</h6>
+                        <span>{{ setting("youtube_name") }}</span>
                     </div>
                 </a>
             </div>

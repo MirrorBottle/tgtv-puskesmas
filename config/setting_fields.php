@@ -31,7 +31,61 @@ return [
                 'label' => 'No. HP', // you know what label it is
                 'rules' => 'required', // validation rule of laravel
                 'class' => '', // any class for input
-                'value' => '085250606606', // default value if you want
+                'value' => '085250455075', // default value if you want
+            ],
+            [
+                'type'  => 'text', // input fields type
+                'data'  => 'string', // data type, string, int, boolean
+                'name'  => 'facebook_name', // unique name for field
+                'label' => 'Nama Akun Facebook', // you know what label it is
+                'rules' => 'required', // validation rule of laravel
+                'class' => '', // any class for input
+                'value' => 'Puskesmas Loa Kulu', // default value if you want
+            ],
+            [
+                'type'  => 'text', // input fields type
+                'data'  => 'string', // data type, string, int, boolean
+                'name'  => 'facebook_url', // unique name for field
+                'label' => 'Link Akun Facebook', // you know what label it is
+                'rules' => 'required', // validation rule of laravel
+                'class' => '', // any class for input
+                'value' => 'https://web.facebook.com/puskesmas.loakulu', // default value if you want
+            ],
+            [
+                'type'  => 'text', // input fields type
+                'data'  => 'string', // data type, string, int, boolean
+                'name'  => 'instagram_name', // unique name for field
+                'label' => 'Nama Akun Instagram', // you know what label it is
+                'rules' => 'required', // validation rule of laravel
+                'class' => '', // any class for input
+                'value' => 'puskesmas_loa_kulu', // default value if you want
+            ],
+            [
+                'type'  => 'text', // input fields type
+                'data'  => 'string', // data type, string, int, boolean
+                'name'  => 'instagram_url', // unique name for field
+                'label' => 'Link Akun Instagram', // you know what label it is
+                'rules' => 'required', // validation rule of laravel
+                'class' => '', // any class for input
+                'value' => 'https://www.instagram.com/puskesmas_loa_kulu/', // default value if you want
+            ],
+            [
+                'type'  => 'text', // input fields type
+                'data'  => 'string', // data type, string, int, boolean
+                'name'  => 'youtube_name', // unique name for field
+                'label' => 'Nama Akun Youtube', // you know what label it is
+                'rules' => 'required', // validation rule of laravel
+                'class' => '', // any class for input
+                'value' => 'puskesmas loa kulu', // default value if you want
+            ],
+            [
+                'type'  => 'text', // input fields type
+                'data'  => 'string', // data type, string, int, boolean
+                'name'  => 'youtube_url', // unique name for field
+                'label' => 'Link Akun Youtube', // you know what label it is
+                'rules' => 'required', // validation rule of laravel
+                'class' => '', // any class for input
+                'value' => 'https://www.youtube.com/channel/UCJKZiPnTnOaa05RzkstjJcw', // default value if you want
             ],
             [
                 'type'  => 'text', // input fields type
@@ -40,7 +94,7 @@ return [
                 'label' => 'Alamat', // you know what label it is
                 'rules' => 'required', // validation rule of laravel
                 'class' => '', // any class for input
-                'value' => '-', // default value if you want
+                'value' => 'Jl. Mulyo Pranoto, Kutai Kartanegara', // default value if you want
             ],
             [
                 'type'  => 'text', // input fields type
