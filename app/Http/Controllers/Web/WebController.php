@@ -11,6 +11,7 @@ use App\Models\Gallery;
 use App\Models\Inbox;
 use App\Models\Mission;
 use App\Models\Order;
+use App\Models\Page;
 use App\Models\Vehicle;
 use App\Models\Visitor;
 use Carbon\Carbon;
@@ -47,6 +48,7 @@ class WebController extends Controller
 
         $banners = Gallery::type('banner');
         $services = Gallery::type('service');
+        $pages = Page::orderBy("id", "DESC")->limit(3)->get();
 
 
         $agent = new Agent();
@@ -61,7 +63,7 @@ class WebController extends Controller
             ]);
         }
         
-        return view('web.index', compact('banners', 'services'));
+        return view('web.index', compact('banners', 'services', 'pages'));
     }
 
     public function about() {
@@ -81,7 +83,44 @@ class WebController extends Controller
 
 
         return view('web.about');
+    }
 
+    public function pages() {
+        SEOTools::setTitle(setting('app_name') . " - Tentang");
+        SEOTools::setDescription(setting('about_description'));
+        SEOTools::opengraph()->setUrl(url('/'));
+        SEOTools::opengraph()->addProperty('type', 'articles');
+        SEOTools::opengraph()->addImage(asset(setting('about_image')), [
+            'height' => 500,
+            'width' => 800
+        ]);
+        SEOTools::setCanonical(url('/'));
+        SEOTools::twitter()->setSite(setting('app_name'));
+        SEOTools::twitter()->setDescription(setting('about_description'));
+        SEOTools::twitter()->setImage(asset(setting('about_image')));
+        SEOTools::jsonLd()->addImage(asset(setting('about_image')));
+
+        $pages = Page::orderBy("id", "desc")->paginate(9);
+        return view('web.pages', compact('pages'));
+    }
+
+    public function page($slug) {
+        SEOTools::setTitle(setting('app_name') . " - Tentang");
+        SEOTools::setDescription(setting('about_description'));
+        SEOTools::opengraph()->setUrl(url('/'));
+        SEOTools::opengraph()->addProperty('type', 'articles');
+        SEOTools::opengraph()->addImage(asset(setting('about_image')), [
+            'height' => 500,
+            'width' => 800
+        ]);
+        SEOTools::setCanonical(url('/'));
+        SEOTools::twitter()->setSite(setting('app_name'));
+        SEOTools::twitter()->setDescription(setting('about_description'));
+        SEOTools::twitter()->setImage(asset(setting('about_image')));
+        SEOTools::jsonLd()->addImage(asset(setting('about_image')));
+
+        $page = Page::where("slug", $slug)->first();
+        return view('web.page', compact('page'));
     }
 
     public function gallery() {

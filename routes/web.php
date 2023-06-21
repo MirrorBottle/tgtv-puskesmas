@@ -28,6 +28,11 @@ Route::group([
     Route::get('/pemeriksaan-lansia', 'WebController@elderly');
     Route::get('/galeri', 'WebController@gallery');
     Route::get('/lampiran', 'WebController@attachment');
+    
+    Route::get('/halaman/{slug}', ['as' => 'web.page', 'uses' => 'WebController@page']);
+    Route::get('/halaman', ['as' => 'web.pages', 'uses' => 'WebController@pages']);
+
+
 });
 // ADMIN
 Route::redirect('admin', 'admin/dashboard');
@@ -51,6 +56,9 @@ Route::group([
     Route::post('galleries/{type}', ['as' => 'galleries.store', 'uses' => 'GalleryController@store']);
     Route::put('galleries/{id}', ['as' => 'galleries.update', 'uses' => 'GalleryController@update']);
     Route::delete('galleries/{id}', ['as' => 'galleries.destroy', 'uses' => 'GalleryController@destroy']);
+    
+    Route::get('pages/index_data', ['as' => 'pages.index_data', 'uses' => 'PageController@index_data']);
+    Route::resource('pages', 'PageController');
 
 
     Route::get('elderlies/index_data', ['as' => 'elderlies.index_data', 'uses' => 'ElderlyController@index_data']);

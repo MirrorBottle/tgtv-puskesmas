@@ -62,7 +62,7 @@
             Nav header start
         ***********************************-->
         <div class="nav-header">
-            <a href="{!! url('/dashboard'); !!}" class="brand-logo">
+            <a href="{{ route('dashboard') }}" class="brand-logo">
                 <img class="logo-abbr" src="{{ asset(setting('logo')) }}" alt="">
                 <img class="logo-compact" src="{{ asset(setting('logo')) }}" alt="">
                 <p class="brand-title" src="{{ asset(setting('logo')) }}" alt="">

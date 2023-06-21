@@ -9,20 +9,22 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 use Yajra\DataTables\Facades\DataTables;
-class UserController extends Controller
+use Illuminate\Support\Str;
+
+class PageController extends Controller
 {
     public function __construct()
     {
         // module name
-        $this->module_name = 'users';
+        $this->module_name = 'pages';
         // module model name, path
-        $this->module_model = "App\Models\User";
+        $this->module_model = "App\Models\Page";
         // page title
-        $this->page_title = 'User';
+        $this->page_title = 'Halaman';
         // page description
-        $this->page_description = 'User List';
+        $this->page_description = 'Daftar Halaman';
         // module singular name
-        $this->module_singular = 'User';
+        $this->module_singular = 'Halaman';
     }
     /**
      * Display a listing of the resource.
@@ -40,14 +42,14 @@ class UserController extends Controller
     }
 
     public function index_data() {
-        $data = $this->module_model::select('id', 'name', 'email');
+        $data = $this->module_model::select('*')->orderBy('id', "DESC");
         return DataTables::of($data)
-            ->addColumn('role', function ($data) {
-                return $data->getRoleNames()->first();
+            ->editColumn('banner', function($data) {
+                return asset($data->banner);
             })
             ->addColumn('action', function ($data) {
                 $module_name = $this->module_name;
-                return view('components.action_column', compact('module_name', 'data'));
+                return view("components.action_column", compact('module_name', 'data'));
             })
             ->toJson();
     }
@@ -63,8 +65,7 @@ class UserController extends Controller
         $page_title = "Tambah $this->page_title";
         $page_description = $this->page_description;
         $action = 'user_index';
-        $roles = Role::all();
-        return view("$module_name.create", compact('module_name', 'page_title', 'page_description', 'action', 'roles'));
+        return view("$module_name.create", compact('module_name', 'page_title', 'page_description', 'action'));
     }
 
     /**
@@ -73,15 +74,14 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UserRequest $request)
+    public function store(Request $request)
     {
+        $request->merge([
+            "slug" => Str::slug($request->slug),
+        ]);
         $module_name = $this->module_name;
-        transaction_store(function() use($request) {
-            $module_data = $this->module_model::create($request->all());
-            $role = Role::findById($request->role);
-            $module_data->syncRoles($role);
-        });
-        return redirect()->route("$module_name.index")->with('status', "$this->module_singular baru berhasil dibuat!");
+        $module_data = $this->module_model::create($request->all());
+        return redirect()->route("$module_name.index", $request->type)->with('status', "Halaman baru berhasil dibuat!");
     }
 
     /**
@@ -121,15 +121,13 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->merge([
+            "slug" => Str::slug($request->slug),
+        ]);
         $module_name = $this->module_name;
         $module_data = $this->module_model::findOrFail($id);
         $module_data->update($request->all());
-        if($request->has('role')) {
-            $role = Role::findById($request->role);
-            $module_data->syncRoles($role);
-        }
-        $message = $request->has('role') ? "$this->module_singular berhasil diubah!" : "Data profil berhasil diubah";
-        return $request->has('role') ? redirect()->route("$module_name.index")->with('status', $message) : redirect()->route("$module_name.profile")->with('status', $message);
+        return redirect()->route("$module_name.index")->with('status',"$this->module_singular berhasil diubah!");
     }
 
     /**
@@ -143,24 +141,5 @@ class UserController extends Controller
         $module_data = $this->module_model::findOrFail($id);
         $module_data->delete();
         return response()->json(['statusCode' => 200, 'message' => 'Data berhasil dihapus']);
-    }
-
-
-    public function profile()
-    {
-        $module_name = $this->module_name;
-        $page_title = "Profil";
-        $page_description = $this->page_description;
-        $action = 'user_index';
-        $user = auth()->user();
-        return view("$module_name.profile", compact('module_name', 'page_title', 'page_description', 'action', 'user'));
-    }
-
-    public function change_password(Request $request, $id) {
-        $module_name = $this->module_name;
-        $module_data = $this->module_model::findOrFail($id);
-        $module_data->password = Hash::make($request->password);
-        $module_data->save();
-        return redirect()->route("$module_name.profile")->with('status', "Password berhasil diubah!");
     }
 }

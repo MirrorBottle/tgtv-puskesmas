@@ -39,7 +39,7 @@
         <!-- Navbar Start -->
         <div class="container-fluid nav-bar bg-transparent">
             <nav class="navbar navbar-expand-lg bg-white navbar-light py-0 px-4">
-                <a href="/" class="navbar-brand d-flex align-items-center text-center">
+                <a href="/admin/dashboard" class="navbar-brand d-flex align-items-center text-center">
                     <div class="p-2 me-2">
                         <img class="img-fluid" src="{{ asset(setting('logo')) }}" alt="Icon"
                             style="width: 50px">
@@ -54,6 +54,7 @@
                     <div class="navbar-nav ms-auto">
                         <a href="/" class="nav-item nav-link {{ Request::is('/') ? 'active' : '' }}">Beranda</a>
                         <a href="/tentang" class="nav-item nav-link {{ Request::is('tentang') ? 'active' : '' }}">Tentang</a>
+                        <a href="/halaman" class="nav-item nav-link {{ Request::is('halaman') ? 'active' : '' }}">Halaman</a>
                         <a href="/galeri" class="nav-item nav-link {{ Request::is('galeri') ? 'active' : '' }}">Galeri</a>
                         <a href="/lampiran" class="nav-item nav-link {{ Request::is('lampiran') ? 'active' : '' }}">Lampiran</a>
                     </div>

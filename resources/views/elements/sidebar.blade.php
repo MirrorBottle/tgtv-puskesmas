@@ -34,6 +34,7 @@
                         <span class="nav-text">Web Master</span>
                     </a>
                     <ul aria-expanded="false">
+                        <li class="{{ Request::is('pages*') ? 'mm-active' : '' }}"><a href="{{ route('pages.index') }}">Halaman</a></li>
                         <li class="{{ Request::is('setting/homepage') ? 'mm-active' : '' }}"><a href="{{ route('setting.section', 'homepage') }}">Homepage</a></li>
                         <li class="{{ Request::is('setting/about') ? 'mm-active' : '' }}"><a href="{{ route('setting.section', 'about') }}">Tentang</a></li>
                         <li class="{{ Request::is('galleries/gallery*') ? 'mm-active' : '' }}"><a href="{{ route('galleries.index', 'gallery') }}">Galeri</a></li>
