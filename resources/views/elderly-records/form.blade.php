@@ -115,6 +115,63 @@
       </div>
     </div>
 
+    {{-- * INPUT TEXT AND SELECT  --}}
+    @php
+        $inputs = [
+          ['Berat Badan', 'weight',  'weight_category', ['BB Kurang', 'BB Lebih', 'Normal'], 'Contoh: 55'],
+          ['Tinggi Badan', 'height',  null, null, 'Contoh: 160'],
+          ['Asam Urat', 'gout',  null, null, 'Contoh: 6.7'],
+          ['IMT', 'imt_res', 'imt_group', ['Normal', 'Kurang', 'Lebih'], null],
+          ['Tekanan Darah', 'blood_pressure_res', 'blood_pressure_group', ['Normal', 'Rendah', 'Tinggi'], 'Contoh: 110/70'],
+          ['Gula Darah', 'blood_sugar_res', 'blood_sugar_group', ['Normal', 'DM'], 'Contoh: 180'],
+          ['Kolesterol', 'colestrol_res', 'colestrol_group', ['Normal', 'Hiperlipiden', 'Contoh: 180']],
+          ['A (Barthel Indek)', 'barthel_indeks_res', 'barthel_indeks_group', ['Mandiri', 'Ringan', 'Sedang', 'Berat', 'Total'], 'Contoh: 18'],
+          ['B (Romberg)', null, 'romberg_res', ['Positif', 'Negatif'], null],
+          ['C (MMSE)', 'mmse_res', 'mmse_group', ['Tidak ada', 'Ringan', 'Berat'], null],
+          ['D (Faktor Resiko)', 'risk_factor_res', 'risk_factor_group', ['Ada', 'Tidak Ada'], null],
+          ['E (GDRS)', null, 'depression_group', ['Normal', 'Ringan', 'Sedang', 'Berat'], null],
+        ]
+    @endphp
+    @foreach ($inputs as $input)
+      <div class="col-12 {{ $loop->iteration > 7 ? ($elderly->age > 60 ? "" : "d-none") : "" }}">
+        <div class="row">
+          <?php
+            $field_label = $input[0];
+            $field_name = $input[1];
+            $field_placeholder = $input[4] ?? $field_label;
+            $required = $loop->iteration > 7 ? "" : "required";
+          ?>
+          <div class="col-12">
+            {{ html()->label($field_label, $field_name) }} {!! fielf_required($required) !!}
+          </div>
+          @if ($input[1] != null)
+            <div class="col-12">
+              <div class="form-group">
+                {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"])->addClass($errors->has($field_name) ? 'is-invalid' : '') }}
+              </div>
+            </div>
+          @endif
+          @if ($input[2] != null)
+            <div class="col-12">
+              <?php
+                $field_name = $input[2];
+                $required = $loop->iteration > 7 ? "" : "required";
+              ?>
+              <div class="form-group">
+                <div class="d-flex justify-content-center align-items-center">
+                  <select name="{{$field_name}}" class="form-control multi-select mr-2" value="{{ old($field_name) }}" placeholder="{{$field_placeholder}}">
+                    @foreach ($input[3] as $group)
+                      <option {{isset($module_data) && $module_data->{$field_name} === $loop->iteration ? 'selected' : ''}} value="{{$loop->iteration}}">{{$group}}</option>
+                    @endforeach
+                  </select>
+                </div>
+              </div>
+            </div>
+          @endif
+        </div>
+      </div>
+    @endforeach
+
     {{-- * YES OR NO SELECT  --}}
 
     @php
@@ -126,7 +183,7 @@
         ];
     @endphp
 
-    <div class="col-12 pb-4 mb-4">
+    <div class="col-12 pt-4 mt-4">
       <div class="row">
         @foreach ($inputs as $input)
           <div class="col-12">
@@ -149,61 +206,6 @@
         @endforeach
       </div>
     </div>
-
-    {{-- * INPUT TEXT AND SELECT  --}}
-    @php
-        $inputs = [
-          ['Berat Badan', 'weight',  'weight_category', ['BB Kurang', 'BB Lebih']],
-          ['IMT', 'imt_res', 'imt_group', ['Normal', 'Kurang', 'Lebih']],
-          ['Tekanan Darah', 'blood_pressure_res', 'blood_pressure_group', ['Normal', 'Rendah', 'Tinggi']],
-          ['Gula Darah', 'blood_sugar_res', 'blood_sugar_group', ['Normal', 'DM']],
-          ['Kolesterol', 'colestrol_res', 'colestrol_group', ['Normal', 'Hiperlipiden']],
-          ['A (Barthel Indek)', 'barthel_indeks_res', 'barthel_indeks_group', ['Mandiri', 'Ringan', 'Sedang', 'Berat', 'Total']],
-          ['B (Romberg)', null, 'romberg_res', ['Positif', 'Negatif']],
-          ['C (MMSE)', 'mmse_res', 'mmse_group', ['Tidak ada', 'Ringan', 'Berat']],
-          ['D (Faktor Resiko)', 'risk_factor_res', 'risk_factor_group', ['Ada', 'Tidak Ada']],
-          ['E (GDRS)', null, 'depression_group', ['Normal', 'Ringan', 'Sedang', 'Berat']],
-        ]
-    @endphp
-    @foreach ($inputs as $input)
-      <div class="col-12">
-        <div class="row">
-          <?php
-            $field_label = $input[0];
-            $field_name = $input[1];
-            $field_placeholder = $field_label;
-            $required = "required";
-          ?>
-          <div class="col-12">
-            {{ html()->label($field_label, $field_name) }} {!! fielf_required($required) !!}
-          </div>
-          @if ($input[1] != null)
-            <div class="col-12">
-              <div class="form-group">
-                {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"])->addClass($errors->has($field_name) ? 'is-invalid' : '') }}
-              </div>
-            </div>
-          @endif
-          @if ($input[2] != null)
-            <div class="col-12">
-              <?php
-                $field_name = $input[2];
-                $required = "required";
-              ?>
-              <div class="form-group">
-                <div class="d-flex justify-content-center align-items-center">
-                  <select name="{{$field_name}}" class="form-control multi-select mr-2" value="{{ old($field_name) }}" placeholder="{{$field_placeholder}}">
-                    @foreach ($input[3] as $group)
-                      <option {{isset($module_data) && $module_data->{$field_name} === $loop->iteration ? 'selected' : ''}} value="{{$loop->iteration}}">{{$group}}</option>
-                    @endforeach
-                  </select>
-                </div>
-              </div>
-            </div>
-          @endif
-        </div>
-      </div>
-    @endforeach
 
     <div class="col-12 mt-4 pt-4">
       <?php
@@ -273,10 +275,88 @@
 
 @push ('addition-scripts')
 <script type="text/javascript" src="{{ asset('vendor/file-manager/js/file-manager.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/moment.min.js"></script>
 
 <script type="text/javascript">
   $(function() {
-    
+
+    function countImt() {
+      if($("#weight").val() != "" && $("#height").val() != "") {
+        const weight = Number($("#weight").val())
+        const height = Number($("#height").val()) / 100;
+        const imt = (weight / (height * height)).toFixed(2);
+
+        let imt_group = 1;
+        let weight_group = 3;
+
+        if(imt < 18.5) {
+          imt_group = 2;
+          weight_group = 1;
+        } else if(imt > 23) {
+          imt_group = 3;
+          weight_group = 2;
+        }
+        $("#imt_res").val(imt);
+        $("select[name='imt_group']").val(`${imt_group}`).trigger('change');
+        $("select[name='weight_category']").val(`${weight_group}`).trigger('change');
+      }
+    }
+
+    const elderly = JSON.parse('{!! json_encode($elderly); !!}');
+
+    if("{!! isset($module_data) !!}" == false) {
+      const age = moment(new Date()).diff(moment(elderly.birth_date), 'years')
+      let age_group = 'A';
+      if(age >= 60 && age <= 69) {
+        age_group = 'B'
+      } else if(age >= 70) {
+        age_group = 'C'
+      }
+      $("select[name='age_group']").val(age_group).trigger('change');
+    }
+    $("#weight").on("change", countImt)
+
+    $("#height").on("change", countImt)
+
+    $("#blood_pressure_res").on("change", function() {
+      if($(this).val() != "") {
+        const numbers = $(this).val().split('/');
+  
+        if (numbers.length !== 2) {
+          return;
+        }
+  
+        // Mengubah tekanan sistolik dan diastolik menjadi angka
+        const systolic = parseInt(numbers[0]);
+        const diastolic = parseInt(numbers[1]);
+        
+        // Memastikan kedua angka adalah bilangan bulat positif
+        if (isNaN(systolic) || isNaN(diastolic) || systolic <= 0 || diastolic <= 0) {
+          return
+        }
+  
+        // Menentukan kategori tekanan darah berdasarkan nilai sistolik dan diastolik
+        if (systolic < 90 || diastolic < 60) {
+          $("select[name='blood_pressure_group']").val('2').trigger('change');
+        } else if ((systolic >= 90 && systolic < 120) && (diastolic >= 60 && diastolic < 80)) {
+          $("select[name='blood_pressure_group']").val('1').trigger('change');
+        } else {
+          $("select[name='blood_pressure_group']").val('3').trigger('change');
+        }
+      }
+    })
+
+    $("#colestrol_res").on("change", function() {
+      if($(this).val() != "") {
+        $("select[name='colestrol_group']").val(Number($(this).val()) >= 200 ? '2' : '1').trigger('change');
+      }
+    })
+
+    $("#blood_sugar_res").on("change", function() {
+      if($(this).val() != "") {
+        $("select[name='blood_sugar_group']").val(Number($(this).val()) >= 200 ? '2' : '1').trigger('change');
+      }
+    })
   })
 </script>
 @endpush

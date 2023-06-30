@@ -11,11 +11,11 @@
                     <div class="card-header d-flex align-items-center justify-content-between">
                         <h4 class="card-title">Detail {{ $module_singular }}</h4>
                         <div>
-                            <a href="{{ route("$module_name.death", $module_data->id) }}"
+                            {{-- <a href="{{ route("$module_name.death", $module_data->id) }}"
                                 class="btn btn-danger text-white btn-sm">
                                 <i class="fas fa-flag"></i>
                                 Diagnosa Kematian
-                            </a>
+                            </a> --}}
                             <a href="{{ route("$module_name.index") }}" class="btn btn-primary btn-sm">
                                 <i class="fas fa-arrow-left"></i>
                                 Kembali

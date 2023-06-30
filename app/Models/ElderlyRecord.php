@@ -31,7 +31,7 @@ class ElderlyRecord extends Model
     }
 
     public function getWeightCategoryFormatAttribute() {
-        return ['', 'BB Kurang', 'BB Lebih'][$this->weight_category];
+        return ['', 'BB Kurang', 'BB Lebih', 'Normal'][$this->weight_category];
     }
 
     public function getScreeningFormatAttribute() {

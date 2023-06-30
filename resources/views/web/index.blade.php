@@ -81,7 +81,7 @@
                                     class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">{{ $page->created_at->translatedFormat('d F') }}</div>
                             </div>
                             <div class="p-4 pb-0">
-                                <a class="d-block h5 mb-2" href="">{{ $page->title }}</a>
+                                <a class="d-block h5 mb-2" href="{{ route("web.page", $page->slug) }}">{{ $page->title }}</a>
                                 <p>{{ \Illuminate\Support\Str::limit($page->caption, 150, $end='...') }}</p>
                             </div>
                         </div>

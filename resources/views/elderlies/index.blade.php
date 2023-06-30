@@ -20,7 +20,7 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Nama - NIK</th>
+                                    <th>Nama - NIK - Alamat</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -53,7 +53,7 @@
                         name: 'nik',
                         width: 100,
                         render: function(data, type, row, meta) {
-                            return `${row.name} <br> ${row.nik}`
+                            return `${row.name} <br> ${row.nik} <br> ${row.address}`
                         }
                     },
                     {
