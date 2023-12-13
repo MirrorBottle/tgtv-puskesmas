@@ -8,9 +8,11 @@
     <title>{{ setting('app_name') }} | @yield('title', $page_title ?? '')</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 	<meta name="description" content="@yield('page_description', $page_description ?? '')"/>
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <!-- Favicon icon -->
     <link rel="shortcut icon" href="{{ asset(setting('favicon')) }}" type="image/x-icon">
     <link rel="icon" href="{{ asset(setting('favicon')) }}" type="image/x-icon">
+
 
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
 
