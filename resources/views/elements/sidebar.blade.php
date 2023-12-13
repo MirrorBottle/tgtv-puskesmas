@@ -41,6 +41,11 @@
                         <li class="{{ Request::is('galleries/attachment*') ? 'mm-active' : '' }}"><a href="{{ route('galleries.index', 'attachment') }}">Lampiran</a></li>
                         <li class="{{ Request::is('galleries/service*') ? 'mm-active' : '' }}"><a href="{{ route('galleries.index', 'service') }}">Layanan</a></li>
                         <li class="{{ Request::is('galleries/banner*') ? 'mm-active' : '' }}"><a href="{{ route('galleries.index', 'banner') }}">Banner</a></li>
+                        <li class="{{ Request::is('galleries/banner*') ? 'mm-active' : '' }}"><a href="{{ route('galleries.index', 'worker') }}">Tenaga Kesehatan</a></li>
+                        <li class="{{ Request::is('galleries/banner*') ? 'mm-active' : '' }}"><a href="{{ route('galleries.index', 'information') }}">Informasi</a></li>
+                        <li class="{{ Request::is('galleries/banner*') ? 'mm-active' : '' }}"><a href="{{ route('galleries.index', 'facility') }}">Fasilitas</a></li>
+                        <li class="{{ Request::is('galleries/banner*') ? 'mm-active' : '' }}"><a href="{{ route('galleries.index', 'helper') }}">Pusban</a></li>
+
                     </ul>
                 </li>
                 <li>

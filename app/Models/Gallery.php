@@ -10,7 +10,8 @@ class Gallery extends Model
         'title',
         'image',
         'description',
-        'is_active'
+        'is_active',
+        'type'
     ];
 
     public function scopeActive($query) {

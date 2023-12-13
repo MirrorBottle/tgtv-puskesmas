@@ -120,6 +120,32 @@
     </div>
 </div>
 
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="bg-light rounded p-3">
+            <div class="bg-white rounded p-4" style="border: 1px dashed rgba(0, 185, 142, .3)">
+                <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+                    <h1 class="mb-3">Fasilitas</h1>
+                </div>
+                <div class="row g-4">
+                    @foreach ($facilities as $facility)
+                        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp;">
+                            <div class="team-item rounded overflow-hidden">
+                                <div class="position-relative">
+                                    <img class="img-fluid" src="{{ asset($facility->image) }}" alt="">
+                                </div>
+                                <div class="text-center p-4 mt-3">
+                                    <h5 class="fw-bold mb-0">{{ $facility->title }}</h5>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <!-- About Start -->
 <div class="container-xxl py-5">
@@ -145,16 +171,16 @@
         <div class="bg-light rounded p-3">
             <div class="bg-white rounded p-4" style="border: 1px dashed rgba(0, 185, 142, .3)">
                 <div class="row g-5 align-items-center">
-                    <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
-                        <img class="img-fluid rounded w-100" src="{{ asset(setting('homepage_contact_file')) }}"
-                            alt="">
-                    </div>
                     <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
                         <div class="mb-4">
                             {!! setting('homepage_contact') !!}
                         </div>
                         <a href="https://api.whatsapp.com/send?phone={{ setting("phone_number") }}/085247032442&text=Saya ingin bertanya tentang" target="_blank" class="btn btn-primary py-3 px-4 me-2"><i
                                 class="fa-brands fa-whatsapp me-2"></i></i>Hubungi Kami</a>
+                    </div>
+                    <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+                        <img class="img-fluid rounded w-100" src="{{ asset(setting('homepage_contact_file')) }}"
+                            alt="">
                     </div>
                 </div>
             </div>
@@ -195,19 +221,22 @@
                     </div>
                 </a>
             </div>
-            <div class="col-lg-4 col-sm-12 wow fadeInUp" data-wow-delay="0.1s"
-                style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp;">
-                <a class="cat-item d-block bg-light text-center rounded p-3"
-                    href="{{ setting("youtube_name") }}" target="_blank">
-                    <div class="rounded p-4">
-                        <div class="icon mb-3">
-                            <i class="fab fa-youtube fa-4x"></i>
-                        </div>
-                        <h6>Youtube</h6>
-                        <span>{{ setting("youtube_name") }}</span>
-                    </div>
-                </a>
-            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+            <h1 class="mb-3">Informasi</h1>
+        </div>
+        <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
+            @foreach ($informations as $information)
+                <div class="team-item rounded overflow-hidden" >
+                    <img class="img-fluid" src="{{ asset($information->image) }}" style="width: 20rem; height: 30rem; object-fit: cover" alt="">
+                </div>
+                
+            @endforeach
         </div>
     </div>
 </div>
@@ -225,13 +254,14 @@
             })
 
             fetch(
-                    "https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=UCJKZiPnTnOaa05RzkstjJcw&maxResults=3&order=date&type=video&key=AIzaSyBth6ePgWV_YBWML35tHly3DUwBhbkvHU8")
+                    "https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=UCJKZiPnTnOaa05RzkstjJcw&maxResults=1&order=date&type=video&key=AIzaSyBth6ePgWV_YBWML35tHly3DUwBhbkvHU8")
                 .then(response => response.json())
                 .then((data) => {
                     data.items.forEach((item, index) => {
-                        $("#social-media-container").append(`<div class="col-lg-4 col-sm-12 wow fadeInUp" data-wow-delay="0.1s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp;">
-                        <div class="cat-item d-block bg-light text-center rounded p-3" href="https://web.facebook.com/puskesmas.loakulu" target="_blank">
-                            <iframe class="w-100" style="min-height: 300px" src="https://www.youtube.com/embed/${item.id.videoId}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        $("#social-media-container").append(`<div class="col-lg-4 col-sm-12 wow fadeInUp" data-wow-delay="0.1s"
+                style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp;">
+                        <div class="cat-item d-block bg-light text-center rounded p-3">
+                            <iframe class="w-100" style="min-height: 220px" src="https://www.youtube.com/embed/${item.id.videoId}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                         </div>
                         
                     </div>`);

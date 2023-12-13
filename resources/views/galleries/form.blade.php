@@ -1,3 +1,5 @@
+
+<input type="hidden" name="type" value="{{ $type }}">
 <div class="col-12">
   <div class="row">
     <div class="col-12">

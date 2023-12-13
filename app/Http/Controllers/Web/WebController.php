@@ -48,6 +48,8 @@ class WebController extends Controller
 
         $banners = Gallery::type('banner');
         $services = Gallery::type('service');
+        $informations = Gallery::type('information');
+        $facilities = Gallery::type('facility');
         $pages = Page::orderBy("id", "DESC")->limit(3)->get();
 
 
@@ -63,7 +65,7 @@ class WebController extends Controller
             ]);
         }
         
-        return view('web.index', compact('banners', 'services', 'pages'));
+        return view('web.index', compact('banners', 'services', 'pages', 'facilities', 'informations'));
     }
 
     public function about() {
@@ -81,8 +83,10 @@ class WebController extends Controller
         SEOTools::twitter()->setImage(asset(setting('about_image')));
         SEOTools::jsonLd()->addImage(asset(setting('about_image')));
 
-
-        return view('web.about');
+        $banners = Gallery::type('banner');
+        $workers = Gallery::type('worker');
+        $helpers = Gallery::type('helper');
+        return view('web.about', compact('banners', 'workers', 'helpers'));
     }
 
     public function pages() {
@@ -101,7 +105,9 @@ class WebController extends Controller
         SEOTools::jsonLd()->addImage(asset(setting('about_image')));
 
         $pages = Page::orderBy("id", "desc")->paginate(9);
-        return view('web.pages', compact('pages'));
+        $banners = Gallery::type('banner');
+
+        return view('web.pages', compact('pages', 'banners'));
     }
 
     public function page($slug) {
@@ -139,8 +145,10 @@ class WebController extends Controller
         SEOTools::jsonLd()->addImage(asset(setting('about_image')));
         
         $galleries = Gallery::type('gallery');
+        $banners = Gallery::type('banner');
 
-        return view('web.gallery', compact('galleries'));
+
+        return view('web.gallery', compact('galleries', 'banners'));
 
     }
 
@@ -160,8 +168,10 @@ class WebController extends Controller
         SEOTools::jsonLd()->addImage(asset(setting('about_image')));
         
         $attachments = Gallery::type('attachment');
+        $banners = Gallery::type('banner');
 
-        return view('web.attachment', compact('attachments'));
+
+        return view('web.attachment', compact('attachments', 'banners'));
 
     }
 

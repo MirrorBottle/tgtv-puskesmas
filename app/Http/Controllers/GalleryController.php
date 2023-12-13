@@ -18,7 +18,11 @@ class GalleryController extends Controller
             "gallery" => "Galeri",
             "service" => "Layanan",
             "banner" => "Banner",
-            "attachment" => "Lampiran"
+            "attachment" => "Lampiran",
+            "facility" => "Fasilitas",
+            "helper" => "Pusban",
+            "information" => "Informasi",
+            "worker" => "Tenaga Kesehatan",
         ];
         // page description
         $this->page_description = 'Galeri List';
@@ -27,8 +31,11 @@ class GalleryController extends Controller
             "gallery" => "Galeri",
             "service" => "Layanan",
             "banner" => "Banner",
-            "attachment" => "Lampiran"
-
+            "attachment" => "Lampiran",
+            "facility" => "Fasilitas",
+            "helper" => "Pusban",
+            "information" => "Informasi",
+            "worker" => "Tenaga Kesehatan",
         ];
     }
     public function index($type)
@@ -70,7 +77,7 @@ class GalleryController extends Controller
         $page_title = "Tambah $page_title";
         $page_description = $this->page_description;
         $action = 'default';
-        return view("$module_name.create", compact('module_name', 'page_title', 'page_description', 'action'));
+        return view("$module_name.create", compact('module_name', 'page_title', 'page_description', 'action', 'type'));
     }
 
     /**
@@ -85,7 +92,7 @@ class GalleryController extends Controller
             "is_active" => $request->is_active === "on" ? 1 : 0,
         ]);
         $module_name = $this->module_name;
-        $module_data = $this->module_model::create($request->all());
+        $module_data = $this->module_model::create($request->all())->toSql();
         $module_singular = $this->module_singular[$request->type];
         return redirect()->route("$module_name.index", $request->type)->with('status', "$module_singular baru berhasil dibuat!");
     }
@@ -121,7 +128,8 @@ class GalleryController extends Controller
         $page_title = "Ubah $page_title";
         $page_description = $this->page_description;
         $action = 'default_index';
-        return view("$module_name.edit", compact('module_name', 'page_title', 'page_description', 'action', 'module_data'));
+        $type = $module_data->type;
+        return view("$module_name.edit", compact('module_name', 'page_title', 'page_description', 'action', 'module_data', 'type'));
     }
 
     /**
@@ -139,7 +147,7 @@ class GalleryController extends Controller
         $module_name = $this->module_name;
         $module_data = $this->module_model::findOrFail($id);
         $module_data->update($request->all());
-        return redirect()->route("$module_name.index")->with('status',"$this->module_singular berhasil diubah!");
+        return redirect()->route("$module_name.index", $module_data->type)->with('status',"$this->module_singular berhasil diubah!");
     }
 
     /**

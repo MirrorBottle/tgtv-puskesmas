@@ -20,7 +20,7 @@ class CreateGalleriesTable extends Migration
             $table->text('description')->nullable();
             $table->text('link')->nullable();
             $table->boolean('is_active')->default(1);
-            $table->enum('type', ['banner', 'gallery', 'service', 'attachment']);
+            $table->enum('type', ['banner', 'gallery', 'service', 'attachment', 'helper', 'facility', 'information', 'worker']);
             $table->timestamps();
         });
     }
